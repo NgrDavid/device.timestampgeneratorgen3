@@ -18870,6 +18870,18 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <attribute name="DIGKEYPN" value="587-2786-1-ND"/>
 <attribute name="MPN" value="EMK107ABJ475KA-T"/>
 </part>
+<part name="R50" library="rcl" deviceset="R-EU_" device="R0402" value="10k">
+<attribute name="MPN" value="CRCW040210K0FKED"/>
+<attribute name="NOTES" value="-"/>
+<attribute name="TYPE" value="SMD"/>
+</part>
+<part name="C40" library="rcl" deviceset="C-EU" device="C0402" value="330pF">
+<attribute name="MPN" value="C0402C331J5GACTU"/>
+<attribute name="NOTES" value="-"/>
+<attribute name="TYPE" value="SMD"/>
+</part>
+<part name="GND123" library="supply1" deviceset="GND" device=""/>
+<part name="VDD4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device="" value="+3V3_u"/>
 </parts>
 <sheets>
 <sheet>
@@ -19934,13 +19946,13 @@ At around 200mA</text>
 <instance part="GND31" gate="1" x="723.9" y="401.32" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="726.44" y="398.78" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="GND65" gate="1" x="731.52" y="462.28" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="734.06" y="459.74" size="1.778" layer="96" rot="MR0"/>
+<instance part="GND65" gate="1" x="718.82" y="462.28" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="721.36" y="459.74" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="PDI" gate="1" x="741.68" y="472.44" smashed="yes" rot="MR180">
-<attribute name="VALUE" x="737.87" y="480.06" size="1.778" layer="96" rot="MR180"/>
-<attribute name="NAME" x="737.87" y="466.598" size="1.778" layer="95" rot="MR180"/>
-<attribute name="DIGKEYPN" x="741.68" y="472.44" size="1.778" layer="96" rot="MR180" display="off"/>
+<instance part="PDI" gate="1" x="728.98" y="472.44" smashed="yes" rot="MR180">
+<attribute name="VALUE" x="725.17" y="480.06" size="1.778" layer="96" rot="MR180"/>
+<attribute name="NAME" x="725.17" y="466.598" size="1.778" layer="95" rot="MR180"/>
+<attribute name="DIGKEYPN" x="728.98" y="472.44" size="1.778" layer="96" rot="MR180" display="off"/>
 </instance>
 <instance part="CLKIN" gate="G$1" x="218.44" y="210.82" smashed="yes" rot="MR0">
 <attribute name="NAME" x="226.06" y="217.424" size="1.778" layer="95" rot="MR0"/>
@@ -20336,8 +20348,8 @@ At around 200mA</text>
 <instance part="VDD1" gate="G$1" x="690.88" y="449.58" smashed="yes">
 <attribute name="VALUE" x="688.34" y="452.12" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="VDD2" gate="G$1" x="731.52" y="482.6" smashed="yes">
-<attribute name="VALUE" x="728.98" y="480.06" size="1.778" layer="96" rot="R90"/>
+<instance part="VDD2" gate="G$1" x="718.82" y="482.6" smashed="yes">
+<attribute name="VALUE" x="716.28" y="480.06" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="VDD3" gate="G$1" x="568.96" y="414.02" smashed="yes">
 <attribute name="VALUE" x="566.42" y="411.48" size="1.778" layer="96" rot="R90"/>
@@ -20423,6 +20435,71 @@ At around 200mA</text>
 <attribute name="MPN" x="147.32" y="391.16" size="1.778" layer="96" rot="MR0" display="off"/>
 <attribute name="MPN" x="147.32" y="391.16" size="1.778" layer="96" rot="MR0" display="off"/>
 <attribute name="DIGKEYPN" x="147.32" y="391.16" size="1.778" layer="96" rot="MR0" display="off"/>
+</instance>
+<instance part="R50" gate="G$1" x="744.22" y="482.6" smashed="yes" rot="R90">
+<attribute name="NAME" x="742.95" y="486.1814" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="742.442" y="483.362" size="1.778" layer="96" rot="R180"/>
+<attribute name="MPN" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="MPN" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="TYPE" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="NOTES" x="744.22" y="482.6" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="C40" gate="G$1" x="744.22" y="464.82" smashed="yes">
+<attribute name="NAME" x="751.84" y="464.693" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="752.856" y="461.899" size="1.778" layer="96" rot="R180"/>
+<attribute name="MPN" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="TYPE" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+<attribute name="NOTES" x="744.22" y="464.82" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="GND123" gate="1" x="744.22" y="454.66" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="746.76" y="452.12" size="1.778" layer="96" rot="MR0"/>
+</instance>
+<instance part="VDD4" gate="G$1" x="744.22" y="490.22" smashed="yes">
+<attribute name="VALUE" x="741.68" y="487.68" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -20776,8 +20853,8 @@ At around 200mA</text>
 </segment>
 <segment>
 <pinref part="GND65" gate="1" pin="GND"/>
-<wire x1="734.06" y1="469.9" x2="731.52" y2="469.9" width="0.1524" layer="91"/>
-<wire x1="731.52" y1="469.9" x2="731.52" y2="464.82" width="0.1524" layer="91"/>
+<wire x1="721.36" y1="469.9" x2="718.82" y2="469.9" width="0.1524" layer="91"/>
+<wire x1="718.82" y1="469.9" x2="718.82" y2="464.82" width="0.1524" layer="91"/>
 <pinref part="PDI" gate="1" pin="6"/>
 </segment>
 <segment>
@@ -20874,6 +20951,11 @@ At around 200mA</text>
 <pinref part="C39" gate="G$1" pin="-"/>
 <pinref part="GND72" gate="1" pin="GND"/>
 <wire x1="109.22" y1="386.08" x2="109.22" y2="383.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND123" gate="1" pin="GND"/>
+<wire x1="744.22" y1="457.2" x2="744.22" y2="459.74" width="0.1524" layer="91"/>
+<pinref part="C40" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="CLOCK_IN" class="0">
@@ -22006,9 +22088,15 @@ At around 200mA</text>
 <label x="589.28" y="492.76" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="754.38" y1="469.9" x2="749.3" y2="469.9" width="0.1524" layer="91"/>
+<wire x1="754.38" y1="469.9" x2="744.22" y2="469.9" width="0.1524" layer="91"/>
 <pinref part="PDI" gate="1" pin="5"/>
 <label x="751.84" y="469.9" size="1.778" layer="95"/>
+<pinref part="C40" gate="G$1" pin="1"/>
+<wire x1="744.22" y1="469.9" x2="736.6" y2="469.9" width="0.1524" layer="91"/>
+<wire x1="744.22" y1="467.36" x2="744.22" y2="469.9" width="0.1524" layer="91"/>
+<junction x="744.22" y="469.9"/>
+<pinref part="R50" gate="G$1" pin="1"/>
+<wire x1="744.22" y1="477.52" x2="744.22" y2="469.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PDI-DATA" class="0">
@@ -22018,7 +22106,7 @@ At around 200mA</text>
 <label x="589.28" y="426.72" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="749.3" y1="474.98" x2="754.38" y2="474.98" width="0.1524" layer="91"/>
+<wire x1="736.6" y1="474.98" x2="754.38" y2="474.98" width="0.1524" layer="91"/>
 <pinref part="PDI" gate="1" pin="1"/>
 <label x="751.84" y="474.98" size="1.778" layer="95"/>
 </segment>
@@ -22399,8 +22487,8 @@ At around 200mA</text>
 </net>
 <net name="VDD" class="0">
 <segment>
-<wire x1="734.06" y1="474.98" x2="731.52" y2="474.98" width="0.1524" layer="91"/>
-<wire x1="731.52" y1="474.98" x2="731.52" y2="480.06" width="0.1524" layer="91"/>
+<wire x1="721.36" y1="474.98" x2="718.82" y2="474.98" width="0.1524" layer="91"/>
+<wire x1="718.82" y1="474.98" x2="718.82" y2="480.06" width="0.1524" layer="91"/>
 <pinref part="PDI" gate="1" pin="2"/>
 <pinref part="VDD2" gate="G$1" pin="VDD"/>
 </segment>
@@ -22453,6 +22541,10 @@ At around 200mA</text>
 <pinref part="R48" gate="G$1" pin="2"/>
 <wire x1="718.82" y1="335.28" x2="718.82" y2="332.74" width="0.1524" layer="91"/>
 <pinref part="VDD5" gate="G$1" pin="VDD"/>
+</segment>
+<segment>
+<pinref part="R50" gate="G$1" pin="2"/>
+<pinref part="VDD4" gate="G$1" pin="VDD"/>
 </segment>
 </net>
 </nets>
