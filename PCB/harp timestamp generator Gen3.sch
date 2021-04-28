@@ -18772,7 +18772,7 @@ Source: http://products.nichicon.co.jp/en/pdf/XJA043/e-ud.pdf</description>
 <attribute name="DIGKEYPN" value="SBC817-40LT1GOSCT-ND"/>
 <attribute name="MPN" value="SBC817-40LT1G"/>
 </part>
-<part name="R14" library="rcl" deviceset="R-EU_" device="R0402" value="10k">
+<part name="R14" library="rcl" deviceset="R-EU_" device="R0402" value="1k">
 <attribute name="DIGKEYPN" value="541-3959-1-ND"/>
 <attribute name="MPN" value="CRCW040210K0FKEDC"/>
 </part>
