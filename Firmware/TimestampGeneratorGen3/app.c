@@ -191,11 +191,13 @@ bool battery_ready = false;
 #define BUTTON_USER_LOCK_UNLOCK 2
 #define BUTTON_USER_GEN_REPEATER 3
 #define BUTTON_USER_TURN_OFF 4
+#define BUTTON_USER_START_BATTERY_CYCLE 5
 
 #define BUTTON_USER_BAT_LEVEL_MS 500
 #define BUTTON_USER_LOCK_UNLOCK_MS 2500
 #define BUTTON_USER_GEN_REPEATER_MS 5500
 #define BUTTON_USER_TURN_OFF_MS 9000
+#define BUTTON_USER_START_BATTERY_CYCLE_MS 15000
 
 uint16_t button_pressed_ms = 0;
 uint8_t button_blink_counter = 0;
@@ -251,6 +253,16 @@ void update_LED_REPEATER(void)
 		set_LED_REPEATER;
 }
 
+void update_LED_POWER(void)
+{
+	if (!read_POWER_GOOD)
+		set_LED_POWER;
+	else
+		clr_LED_POWER;
+}
+
+bool is_first_time_at_battery_cycle_user_indication;
+
 void core_callback_t_1ms(void)
 {	
 	/* When button is being pressed */
@@ -262,6 +274,12 @@ void core_callback_t_1ms(void)
 		{			
 			button_blink_counter = 0;
 			
+			if (button_pressed_ms < BUTTON_USER_LOCK_UNLOCK_MS)
+			{
+				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+				clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
+			}
+			
 			if (button_pressed_ms >= BUTTON_USER_LOCK_UNLOCK_MS && button_pressed_ms < BUTTON_USER_GEN_REPEATER_MS)
 			{
 				tgl_LED_LOCK;
@@ -270,22 +288,42 @@ void core_callback_t_1ms(void)
 			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_TURN_OFF_MS)
 			{
 				
-				if (core_bool_is_visual_enabled())
-					clr_LED_LOCK;
-				else
+				if (core_bool_is_visual_enabled())					
 					update_LED_LOCK();
+				else
+					clr_LED_LOCK;
 				
 				tgl_LED_REPEATER;
 			}
 			
-			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS)
+			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				if (core_bool_is_visual_enabled())
-					clr_LED_REPEATER;
-				else
 					update_LED_REPEATER();
+				else
+					clr_LED_REPEATER;
 				
 				tgl_LED_POWER;
+				is_first_time_at_battery_cycle_user_indication = true;
+				
+			}
+			
+			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
+			{
+				if (core_bool_is_visual_enabled())
+					update_LED_POWER();
+				else
+					clr_LED_POWER;
+				
+				if(is_first_time_at_battery_cycle_user_indication)
+				{
+					is_first_time_at_battery_cycle_user_indication = false;
+					clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+					clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
+				}
+					
+				tgl_LED_CLK_0; tgl_LED_CLK_1; tgl_LED_CLK_2;
+				tgl_LED_CLK_3; tgl_LED_CLK_4; tgl_LED_CLK_5;
 			}			
 		}
 	}
@@ -317,10 +355,18 @@ void core_callback_t_1ms(void)
 			{
 				// Toggle the generation state
 			}
-			
-			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS)
+			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				// Turn the device off
+			}
+			
+			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
+			{
+				// Toggle battery cycle
+				if (battery_mode & B_START_BATTERY_CYCLE)
+					battery_mode = 0;
+				else
+					battery_mode = B_START_BATTERY_CYCLE;
 			}
 		}
 	
@@ -366,7 +412,7 @@ void core_callback_t_1ms(void)
 			}
 			else
 			{			
-				if (!read_POWER_GOOD && ((counter%50) == 0))
+				if (!read_POWER_GOOD && ((counter%50) == 0) && ((battery_mode&B_START_BATTERY_CYCLE)==0))
 				{
 					if (read_DEVICE_AT_0) set_LED_CLK_0; else clr_LED_CLK_0;
 					if (read_DEVICE_AT_1) set_LED_CLK_1; else clr_LED_CLK_1;
@@ -374,6 +420,24 @@ void core_callback_t_1ms(void)
 					if (read_DEVICE_AT_3) set_LED_CLK_3; else clr_LED_CLK_3;
 					if (read_DEVICE_AT_4) set_LED_CLK_4; else clr_LED_CLK_4;
 					if (read_DEVICE_AT_5) set_LED_CLK_5; else clr_LED_CLK_5;
+					update_LED_LOCK();
+					update_LED_REPEATER();
+					set_LED_POWER;
+				}
+				
+				if (!read_POWER_GOOD && ((counter%500) == 0) && (battery_mode&B_START_BATTERY_CYCLE))
+				{
+					set_LED_CLK_0; set_LED_CLK_1; set_LED_CLK_2;
+					clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
+					update_LED_LOCK();
+					update_LED_REPEATER();
+					set_LED_POWER;
+				}
+				
+				if (!read_POWER_GOOD && ((counter%1000) == 0) && (battery_mode&B_START_BATTERY_CYCLE))
+				{
+					clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+					set_LED_CLK_3; set_LED_CLK_4; set_LED_CLK_5;
 					update_LED_LOCK();
 					update_LED_REPEATER();
 					set_LED_POWER;
@@ -443,6 +507,13 @@ void core_callback_t_1ms(void)
 			
 			batery_state_machine();
 		}
+		else
+		{	
+			battery_mode = 0;
+					
+			clr_EN_CHARGE;
+			clr_EN_DISCHARGE;
+		}
 
 		switch (app_regs.REG_BATTERY_RATE)
 		{
@@ -477,6 +548,17 @@ void core_callback_t_1ms(void)
 
 void batery_state_machine(void)
 {	
+	/* If power is not plugged, cancel any battery mode */
+	if (read_POWER_GOOD)
+	{
+		battery_mode = 0;
+		
+		clr_EN_CHARGE;
+		clr_EN_DISCHARGE;
+		
+		return;
+	}
+	
 	/* Typical behavior */
 	if (battery_mode == 0)
 	{	
@@ -536,7 +618,7 @@ void batery_state_machine(void)
 		if (app_regs.REG_BATTERY <= BATTERY_DISCHARGED_TH)
 		{
 			battery_mode = 0;
-			set_EN_CHARGE;
+			clr_EN_CHARGE;
 			clr_EN_DISCHARGE;
 		}
 	}
@@ -552,10 +634,7 @@ void batery_state_machine(void)
 			clr_EN_CHARGE;
 			clr_EN_DISCHARGE;
 		}
-	}
-	
-
-	
+	}	
 }
 
 /************************************************************************/

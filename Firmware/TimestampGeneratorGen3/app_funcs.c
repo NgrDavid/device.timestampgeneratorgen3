@@ -49,10 +49,17 @@ bool app_write_REG_CONFIG(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
-	if (reg & B_START_BATTERY_CYCLE) { battery_mode = B_START_BATTERY_CYCLE; battery_cycle_state = 0;}
+	if (reg & B_START_BATTERY_CYCLE)
+	{
+		battery_mode = B_START_BATTERY_CYCLE; battery_cycle_state = 0;
+		
+		clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+		clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
+	}
+	
 	if (reg & B_START_DISCHARGE) {battery_mode = B_START_DISCHARGE;}
 	if (reg & B_START_CHARGE) { battery_mode = B_START_CHARGE; }
-	
+		
 	if (reg & B_STOPS_ANY) { battery_mode = 0; }
 
 	app_regs.REG_CONFIG = reg;
