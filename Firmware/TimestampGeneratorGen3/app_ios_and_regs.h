@@ -185,12 +185,10 @@ typedef struct
 /************************************************************************/
 /* Registers' bits                                                      */
 /************************************************************************/
-#define B_LOCK_TIMESTAMP                   (1<<0)       // Locks that timestamp generation
-#define B_UNLOCK_TIMESTAMP                 (1<<1)       // Unlock the timestamp
-#define B_START_BATTERY_CYCLE              (1<<2)       // Starts battery cycle to extend batteries life
-#define B_START_CHARGE                     (1<<3)       // Starts to charge right away
-#define B_START_DISCHARGE                  (1<<4)       // Starts to discharge right away
-#define B_STOPS_ANY                        (1<<5)       // Stop any control of the battery and get back to normal function
+#define B_START_BATTERY_CYCLE              (1<<0)       // Starts battery cycle to extend batteries life
+#define B_START_DISCHARGE                  (1<<1)       // Starts to discharge right away
+#define B_START_CHARGE                     (1<<2)       // Starts to charge right away
+#define B_STOPS_ANY                        (1<<3)       // Stop any control of the battery and get back to normal function
 #define B_REPEATER                         (1<<0)       // Device is a repeater
 #define GM_BATTERY_RATE                    3            // Configures the rate at which the battery charge is sent
 #define MSK_EACH_60SECONDS                 0            // Sent each minute
