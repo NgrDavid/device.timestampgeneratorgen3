@@ -18,7 +18,6 @@ void init_ios(void)
 
 	/* Configure input interrupts */
 	io_set_int(&PORTB, INT_LEVEL_LOW, 0, (1<<0), false);                 // POWER_GOOD
-	io_set_int(&PORTB, INT_LEVEL_LOW, 1, (1<<3), false);                 // BUTTON
 
 	/* Configure output pins */
 	io_pin2out(&PORTA, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);                  // BAT_READ
