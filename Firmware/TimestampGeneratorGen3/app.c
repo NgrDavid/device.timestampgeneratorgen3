@@ -74,16 +74,7 @@ void core_callback_1st_config_hw_after_boot(void)
 	/* Don't delete this function!!! */
 	init_ios();
 	
-	if (!read_BUTTON)
-	{
-		/* Shutdown device */
-		/*
-		SLEEP_CTRL = SLEEP_SMODE_PDOWN_gc | SLEEP_SEN_bm;
-		hwbp_app_enable_interrupts;
-		__asm volatile("sleep");
-		wdt_reset_device();
-		*/
-	}
+	_delay_ms(1000);
 	
 	/* Initialize hardware */
 	for (uint8_t i = 0; i < 2; i++)
@@ -136,6 +127,8 @@ void core_callback_1st_config_hw_after_boot(void)
 void core_callback_reset_registers(void)
 {
 	/* Initialize registers */
+	app_regs.REG_BATTERY_RATE = MSK_EACH_60SECONDS;
+	
 	app_regs.REG_BATTERY_TH_HIGH = 3.75;
 	app_regs.REG_BATTERY_TH_LOW = 3.65;
 }
@@ -196,7 +189,6 @@ bool battery_ready = false;
 #define BUTTON_USER_BAT_LEVEL_MS 500
 #define BUTTON_USER_LOCK_UNLOCK_MS 2500
 #define BUTTON_USER_GEN_REPEATER_MS 5500
-#define BUTTON_USER_TURN_OFF_MS 9000
 #define BUTTON_USER_START_BATTERY_CYCLE_MS 15000
 
 uint16_t button_pressed_ms = 0;
@@ -208,7 +200,8 @@ uint16_t battery_indication_ms = 0;
 #define BATTERY_INDICATION_BLINK_MS 200
 
 #define BATTERY_CHARGED_TH 4.1
-#define BATTERY_DISCHARGED_TH 3.3
+#define BATTERY_DISCHARGED_TH 3.35
+#define BATTERY_DISCHARGED_DEPLETED 3.25
 
 extern uint8_t battery_mode;
 extern uint8_t battery_cycle_state;
@@ -261,6 +254,30 @@ void update_LED_POWER(void)
 		clr_LED_POWER;
 }
 
+void turn_device_off(void)
+{
+	clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2; clr_LED_LOCK; clr_LED_POWER;
+	clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5; clr_LED_REPEATER; clear_io(PORTD, 5);
+	
+	clr_EN_CHARGE;
+	clr_EN_DISCHARGE;
+	clr_BAT_READ;
+	
+	clr_EN_SCREEN_BACKLIGHT;
+	
+	for (uint8_t j = 0; j < 20; j++)
+	{
+		_delay_ms (100);
+		//toggle_io(PORTD, 5);
+		tgl_LED_POWER;
+	}
+	
+	SLEEP_CTRL = SLEEP_SMODE_PDOWN_gc | SLEEP_SEN_bm;
+	__asm volatile("sleep");
+	
+	wdt_reset_device();
+}
+
 bool is_first_time_at_battery_cycle_user_indication;
 
 void core_callback_t_1ms(void)
@@ -276,8 +293,6 @@ void core_callback_t_1ms(void)
 			
 			if (button_pressed_ms < BUTTON_USER_LOCK_UNLOCK_MS)
 			{
-				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
-				clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
 			}
 			
 			if (button_pressed_ms >= BUTTON_USER_LOCK_UNLOCK_MS && button_pressed_ms < BUTTON_USER_GEN_REPEATER_MS)
@@ -285,7 +300,7 @@ void core_callback_t_1ms(void)
 				tgl_LED_LOCK;
 			}
 			
-			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_TURN_OFF_MS)
+			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				
 				if (core_bool_is_visual_enabled())					
@@ -294,20 +309,9 @@ void core_callback_t_1ms(void)
 					clr_LED_LOCK;
 				
 				tgl_LED_REPEATER;
-			}
-			
-			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
-			{
-				if (core_bool_is_visual_enabled())
-					update_LED_REPEATER();
-				else
-					clr_LED_REPEATER;
-				
-				tgl_LED_POWER;
 				is_first_time_at_battery_cycle_user_indication = true;
-				
 			}
-			
+						
 			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				if (core_bool_is_visual_enabled())
@@ -315,15 +319,18 @@ void core_callback_t_1ms(void)
 				else
 					clr_LED_POWER;
 				
-				if(is_first_time_at_battery_cycle_user_indication)
+				if(!read_POWER_GOOD)
 				{
-					is_first_time_at_battery_cycle_user_indication = false;
-					clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
-					clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
-				}
+					if(is_first_time_at_battery_cycle_user_indication)
+					{
+						is_first_time_at_battery_cycle_user_indication = false;
+						clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+						clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;
+					}
 					
-				tgl_LED_CLK_0; tgl_LED_CLK_1; tgl_LED_CLK_2;
-				tgl_LED_CLK_3; tgl_LED_CLK_4; tgl_LED_CLK_5;
+					tgl_LED_CLK_0; tgl_LED_CLK_1; tgl_LED_CLK_2;
+					tgl_LED_CLK_3; tgl_LED_CLK_4; tgl_LED_CLK_5;
+				}
 			}			
 		}
 	}
@@ -337,11 +344,8 @@ void core_callback_t_1ms(void)
 			
 			if (button_pressed_ms < BUTTON_USER_LOCK_UNLOCK_MS)
 			{
-				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2; clr_LED_LOCK; clr_LED_POWER;
-				clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5; clr_LED_REPEATER;
-				
-				if (core_bool_is_visual_enabled() && !read_POWER_GOOD) set_LED_POWER;
-				
+				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
+				clr_LED_CLK_3; clr_LED_CLK_4; clr_LED_CLK_5;				
 				
 				battery_indication_ms = BATTERY_INDICATION_PERIOD;
 			}
@@ -351,13 +355,9 @@ void core_callback_t_1ms(void)
 				// Toggle the lock state
 			}
 			
-			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_TURN_OFF_MS)
+			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				// Toggle the generation state
-			}
-			if (button_pressed_ms >= BUTTON_USER_TURN_OFF_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
-			{
-				// Turn the device off
 			}
 			
 			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
@@ -379,26 +379,22 @@ void core_callback_t_1ms(void)
 			
 			if ((battery_indication_ms % BATTERY_INDICATION_BLINK_MS) == 0)
 			{
-				if ( app_regs.REG_BATTERY < 3.50)
+				if ( app_regs.REG_BATTERY < 3.55)
 				{
-					set_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2; clr_LED_LOCK;
-				}
-				else if ( app_regs.REG_BATTERY < 3.55)
-				{
-					set_LED_CLK_0; set_LED_CLK_1; clr_LED_CLK_2; clr_LED_LOCK;
+					set_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
 				}
 				else if ( app_regs.REG_BATTERY < 3.60)
 				{
-					set_LED_CLK_0; set_LED_CLK_1; set_LED_CLK_2; clr_LED_LOCK;
+					set_LED_CLK_0; set_LED_CLK_1; clr_LED_CLK_2;
 				}
 				else
 				{
-					set_LED_CLK_0; set_LED_CLK_1; set_LED_CLK_2; set_LED_LOCK;
+					set_LED_CLK_0; set_LED_CLK_1; set_LED_CLK_2;
 				}
 			}
 			if ((battery_indication_ms % (BATTERY_INDICATION_BLINK_MS * 2)) == 0)
 			{
-				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2; clr_LED_LOCK;
+				clr_LED_CLK_0; clr_LED_CLK_1; clr_LED_CLK_2;
 			}
 		}
 		
@@ -555,6 +551,9 @@ void batery_state_machine(void)
 		
 		clr_EN_CHARGE;
 		clr_EN_DISCHARGE;
+		
+		if (app_regs.REG_BATTERY <= BATTERY_DISCHARGED_DEPLETED)
+			turn_device_off();
 		
 		return;
 	}
