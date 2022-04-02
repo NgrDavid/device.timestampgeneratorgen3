@@ -42,9 +42,11 @@ void hwbp_app_initialize(void)
         (uint8_t*)(&app_regs),
         APP_NBYTES_OF_REG_BANK,
         APP_REGS_ADD_MAX - APP_REGS_ADD_MIN + 1,
-        default_device_name
+        default_device_name,
+		true,	// The device is able to repeat the harp timestamp clock
+		true	// The device is able to generate the harp timestamp clock
     );
-}
+} 
 
 /************************************************************************/
 /* Handle if a catastrophic error occur                                 */
@@ -68,7 +70,13 @@ void core_callback_catastrophic_error_detected(void)
 #define T_STARTUP_ON  50
 #define T_STARTUP_OFF 0
 
-void core_callback_1st_config_hw_after_boot(void)
+void core_callback_define_clock_default(void)
+{	
+	/* By default, the device will be used as a clock generator */
+	core_device_to_clock_generator();
+}
+
+void core_callback_initialize_hardware(void)
 {
 	/* Initialize IOs */
 	/* Don't delete this function!!! */
@@ -219,31 +227,20 @@ void core_callback_t_new_second(void)
 }
 void core_callback_t_500us(void) {}
 
-bool core_bool_is_lock_on(void)
-{
-	return true;
-}
-
-bool core_bool_is_clock_generation_on(void)
-{
-	return true;
-}
-
 void update_LED_LOCK(void)
 {
-	if (core_bool_is_lock_on())
+	if (core_bool_clock_is_locked())
 		set_LED_LOCK;
 	else
 		clr_LED_LOCK;
 }
 
-
 void update_LED_REPEATER(void)
 {
-	if (core_bool_is_clock_generation_on())
-		clr_LED_REPEATER;
-	else
+	if (core_bool_device_is_repeater())
 		set_LED_REPEATER;
+	else
+		clr_LED_REPEATER;
 }
 
 void update_LED_POWER(void)
@@ -315,7 +312,7 @@ void core_callback_t_1ms(void)
 			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
 				if (core_bool_is_visual_enabled())
-					update_LED_POWER();
+					update_LED_REPEATER();
 				else
 					clr_LED_POWER;
 				
@@ -352,12 +349,20 @@ void core_callback_t_1ms(void)
 			
 			if (button_pressed_ms >= BUTTON_USER_LOCK_UNLOCK_MS && button_pressed_ms < BUTTON_USER_GEN_REPEATER_MS)
 			{
-				// Toggle the lock state
+				if (core_bool_clock_is_locked())
+					core_clock_to_unlock();
+				else
+					core_clock_to_lock();
 			}
 			
 			if (button_pressed_ms >= BUTTON_USER_GEN_REPEATER_MS && button_pressed_ms < BUTTON_USER_START_BATTERY_CYCLE_MS)
 			{
-				// Toggle the generation state
+				if (core_bool_device_is_repeater())
+					core_device_to_clock_generator();
+				else
+					core_device_to_clock_repeater();
+				
+				core_save_all_registers_to_eeprom();
 			}
 			
 			if (button_pressed_ms >= BUTTON_USER_START_BATTERY_CYCLE_MS)
@@ -635,6 +640,24 @@ void batery_state_machine(void)
 		}
 	}	
 }
+
+/************************************************************************/
+/* Callbacks: cloc control                                              */
+/************************************************************************/
+void core_callback_clock_to_repeater(void)
+{
+	clr_EN_CLOCK_OUT;
+	_delay_us(10);
+	set_EN_CLOCK_IN;
+}
+void core_callback_clock_to_generator(void)
+{
+	clr_EN_CLOCK_IN;
+	_delay_us(10);
+	set_EN_CLOCK_OUT;
+}
+void core_callback_clock_to_unlock(void) {}
+void core_callback_clock_to_lock(void) {}
 
 /************************************************************************/
 /* Callbacks: uart control                                              */
