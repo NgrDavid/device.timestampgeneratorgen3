@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.0"
+<WorkflowBuilder Version="2.6.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -25,7 +25,7 @@
                 <harp:MessageType>Write</harp:MessageType>
                 <harp:Address>32</harp:Address>
                 <harp:PayloadType>U8</harp:PayloadType>
-                <harp:Payload>8</harp:Payload>
+                <harp:Payload>4</harp:Payload>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -54,7 +54,7 @@
                 <harp:MessageType>Write</harp:MessageType>
                 <harp:Address>32</harp:Address>
                 <harp:PayloadType>U8</harp:PayloadType>
-                <harp:Payload>16</harp:Payload>
+                <harp:Payload>2</harp:Payload>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -83,7 +83,7 @@
                 <harp:MessageType>Write</harp:MessageType>
                 <harp:Address>32</harp:Address>
                 <harp:PayloadType>U8</harp:PayloadType>
-                <harp:Payload>32</harp:Payload>
+                <harp:Payload>8</harp:Payload>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -135,7 +135,7 @@
                 <harp:MessageType>Write</harp:MessageType>
                 <harp:Address>32</harp:Address>
                 <harp:PayloadType>U8</harp:PayloadType>
-                <harp:Payload>4</harp:Payload>
+                <harp:Payload>1</harp:Payload>
               </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -157,7 +157,7 @@
           <harp:VisualIndicators>On</harp:VisualIndicators>
           <harp:Heartbeat>Disable</harp:Heartbeat>
           <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM21</harp:PortName>
+          <harp:PortName>COM4</harp:PortName>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
