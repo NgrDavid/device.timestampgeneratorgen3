@@ -4,6 +4,8 @@ This device generates programable timestamps to up to 6 harp devices.
 
 Includes an internal battery to increase reliability for long term experiments.
 
+![DeviceFront](Pics/camera controller (1).jpg)
+
 # Licensing
 
 The code, designs, documentation, and photos available in this repository is free: you can redistribute it and/or modify it under the terms of the used license.
