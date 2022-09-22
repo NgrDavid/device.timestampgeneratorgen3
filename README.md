@@ -4,7 +4,7 @@ This device generates programable timestamps to up to 6 harp devices.
 
 Includes an internal battery to increase reliability for long term experiments.
 
-![DeviceFront](Pics/camera controller (1).jpg)
+![DeviceFront](Pics/timestamp_generator_front.jpg)
 
 # Licensing
 
