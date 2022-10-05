@@ -484,6 +484,7 @@ void core_callback_t_1ms(void)
 			clr_EN_CHARGE;
 			clr_EN_DISCHARGE;
 			battery_mode = 0;
+			app_regs.REG_BATTERY=0;
 		}
 		else
 		{
