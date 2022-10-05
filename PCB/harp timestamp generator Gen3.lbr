@@ -183,8 +183,8 @@ by exp-lbrs.ulp</description>
 </package>
 <package name="SOT23-6L">
 <circle x="-1.7" y="-1.15" radius="0.22360625" width="0.127" layer="25"/>
-<wire x1="-1.25" y1="0.55" x2="1.25" y2="0.55" width="0" layer="48"/>
-<wire x1="1.25" y1="-0.55" x2="-1.25" y2="-0.55" width="0" layer="48"/>
+<wire x1="-1.25" y1="0.55" x2="1.25" y2="0.55" width="0" layer="51"/>
+<wire x1="1.25" y1="-0.55" x2="-1.25" y2="-0.55" width="0" layer="51"/>
 <wire x1="0" y1="-1.75" x2="0" y2="1.75" width="0" layer="48"/>
 <wire x1="0.95" y1="1.75" x2="0.95" y2="-1.75" width="0" layer="48"/>
 <wire x1="-0.95" y1="-1.75" x2="-0.95" y2="1.75" width="0" layer="48"/>
@@ -206,9 +206,9 @@ by exp-lbrs.ulp</description>
 <smd name="P$6" x="-0.95" y="1.55" dx="2" dy="0.6" layer="1" rot="R90"/>
 <text x="-1.5" y="2.8" size="1.27" layer="25">&gt;NAME</text>
 <text x="-1.3" y="-4" size="1.27" layer="27">&gt;VALUE</text>
-<dimension x1="-1.25" y1="0.55" x2="-1.25" y2="-0.55" x3="-5.8" y3="0" textsize="1.27" layer="48" width="0.1"/>
-<dimension x1="-0.95" y1="1.75" x2="0" y2="1.75" x3="-0.475" y3="6.8" textsize="1.27" layer="48" width="0.1"/>
-<dimension x1="-1.25" y1="1.75" x2="-1.25" y2="-1.75" x3="-3.35" y3="0" textsize="1.27" layer="48" width="0.1"/>
+<dimension x1="-1.25" y1="0.55" x2="-1.25" y2="-0.55" x3="-5.8" y3="0" textsize="1.27" layer="51" width="0.1"/>
+<dimension x1="-0.95" y1="1.75" x2="0" y2="1.75" x3="-0.475" y3="6.8" textsize="1.27" layer="51" width="0.1"/>
+<dimension x1="-1.25" y1="1.75" x2="-1.25" y2="-1.75" x3="-3.35" y3="0" textsize="1.27" layer="51" width="0.1"/>
 </package>
 <package name="35RASMT2BHNTRX">
 <wire x1="-3.5" y1="3" x2="-3.5" y2="-3" width="0.127" layer="21"/>
@@ -1409,23 +1409,6 @@ http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</description>
 <text x="-2.9" y="-6" size="1.2" layer="27" ratio="10">&gt;VALUE</text>
 <text x="-3.2" y="4.1" size="1.2" layer="25" ratio="10">&gt;NAME</text>
 </package>
-<package name="0402" urn="urn:adsk.eagle:footprint:15049/1">
-<description>&lt;b&gt;EMIFIL (R) Chip Ferrite Bead for GHz Noise&lt;/b&gt;&lt;p&gt;
-Source: http://www.murata.com/ Ferrite Bead BLM15H.pdf</description>
-<wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
-<wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
-<wire x1="-1.473" y1="0.483" x2="1.473" y2="0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="0.483" x2="1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="-0.483" x2="-1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="-1.473" y1="-0.483" x2="-1.473" y2="0.483" width="0.0508" layer="39"/>
-<smd name="1" x="-0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
-<smd name="2" x="0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
-<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
-<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.554" y1="-0.3048" x2="-0.254" y2="0.2951" layer="51"/>
-<rectangle x1="0.2588" y1="-0.3048" x2="0.5588" y2="0.2951" layer="51"/>
-<rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
-</package>
 <package name="R0603">
 <description>&lt;b&gt;RESISTOR&lt;/b&gt;</description>
 <wire x1="-0.432" y1="-0.356" x2="0.432" y2="-0.356" width="0.1524" layer="51"/>
@@ -1442,13 +1425,492 @@ Source: http://www.murata.com/ Ferrite Bead BLM15H.pdf</description>
 <rectangle x1="-0.8382" y1="-0.4318" x2="-0.4318" y2="0.4318" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
 </package>
+<package name="TSSOP8" urn="urn:adsk.eagle:footprint:7566723/1">
+<description>&lt;b&gt;Plastic Small Outline&lt;/b&gt;</description>
+<wire x1="-2.15" y1="-1.4" x2="2.15" y2="-1.4" width="0.2032" layer="21"/>
+<wire x1="2.15" y1="-1.4" x2="2.15" y2="1.4" width="0.2032" layer="21"/>
+<wire x1="2.15" y1="1.4" x2="-2.15" y2="1.4" width="0.2032" layer="21"/>
+<wire x1="-2.15" y1="1.4" x2="-2.15" y2="-1.4" width="0.2032" layer="21"/>
+<circle x="-1.625" y="0.65" radius="0.325" width="0" layer="21"/>
+<smd name="1" x="-2.925" y="0.975" dx="1.2" dy="0.35" layer="1"/>
+<smd name="2" x="-2.925" y="0.325" dx="1.2" dy="0.35" layer="1"/>
+<smd name="3" x="-2.925" y="-0.325" dx="1.2" dy="0.35" layer="1"/>
+<smd name="4" x="-2.925" y="-0.975" dx="1.2" dy="0.35" layer="1"/>
+<smd name="5" x="2.925" y="-0.975" dx="1.2" dy="0.35" layer="1"/>
+<smd name="6" x="2.925" y="-0.325" dx="1.2" dy="0.35" layer="1"/>
+<smd name="7" x="2.925" y="0.325" dx="1.2" dy="0.35" layer="1"/>
+<smd name="8" x="2.925" y="0.975" dx="1.2" dy="0.35" layer="1"/>
+<text x="-2.925" y="1.625" size="1.27" layer="25">&gt;NAME</text>
+<text x="-3.25" y="-2.925" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-3.2" y1="0.85" x2="-2.2" y2="1.1" layer="51"/>
+<rectangle x1="-3.2" y1="0.2" x2="-2.2" y2="0.45" layer="51"/>
+<rectangle x1="-3.2" y1="-0.45" x2="-2.2" y2="-0.2" layer="51"/>
+<rectangle x1="-3.2" y1="-1.1" x2="-2.2" y2="-0.85" layer="51"/>
+<rectangle x1="2.2" y1="-1.1" x2="3.2" y2="-0.85" layer="51"/>
+<rectangle x1="2.2" y1="-0.45" x2="3.2" y2="-0.2" layer="51"/>
+<rectangle x1="2.2" y1="0.2" x2="3.2" y2="0.45" layer="51"/>
+<rectangle x1="2.2" y1="0.85" x2="3.2" y2="1.1" layer="51"/>
+</package>
+<package name="DIOMELF3516" urn="urn:adsk.eagle:footprint:16378178/1">
+<description>MELF, 3.50 mm length, 1.65 mm diameter
+&lt;p&gt;MELF Diode package with 3.50 mm length and 1.65 mm diameter&lt;/p&gt;</description>
+<wire x1="0.983" y1="1.239" x2="-2.5717" y2="1.239" width="0.12" layer="21"/>
+<wire x1="-2.5717" y1="1.239" x2="-2.5717" y2="-1.239" width="0.12" layer="21"/>
+<wire x1="-2.5717" y1="-1.239" x2="0.983" y2="-1.239" width="0.12" layer="21"/>
+<wire x1="1.85" y1="-0.85" x2="-1.85" y2="-0.85" width="0.12" layer="51"/>
+<wire x1="-1.85" y1="-0.85" x2="-1.85" y2="0.85" width="0.12" layer="51"/>
+<wire x1="-1.85" y1="0.85" x2="1.85" y2="0.85" width="0.12" layer="51"/>
+<wire x1="1.85" y1="0.85" x2="1.85" y2="-0.85" width="0.12" layer="51"/>
+<smd name="1" x="-1.6203" y="0" dx="1.2747" dy="1.85" layer="1"/>
+<smd name="2" x="1.6203" y="0" dx="1.2747" dy="1.85" layer="1"/>
+<text x="0" y="1.874" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.874" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="DIOMELF5024" urn="urn:adsk.eagle:footprint:16378176/1">
+<description>MELF, 5.00 mm length, 2.49 mm diameter
+&lt;p&gt;MELF Diode package with 5.00 mm length and 2.49 mm diameter&lt;/p&gt;</description>
+<wire x1="1.8515" y1="1.659" x2="-3.3217" y2="1.659" width="0.12" layer="21"/>
+<wire x1="-3.3217" y1="1.659" x2="-3.3217" y2="-1.659" width="0.12" layer="21"/>
+<wire x1="-3.3217" y1="-1.659" x2="1.8515" y2="-1.659" width="0.12" layer="21"/>
+<wire x1="2.6" y1="-1.27" x2="-2.6" y2="-1.27" width="0.12" layer="51"/>
+<wire x1="-2.6" y1="-1.27" x2="-2.6" y2="1.27" width="0.12" layer="51"/>
+<wire x1="-2.6" y1="1.27" x2="2.6" y2="1.27" width="0.12" layer="51"/>
+<wire x1="2.6" y1="1.27" x2="2.6" y2="-1.27" width="0.12" layer="51"/>
+<smd name="1" x="-2.4296" y="0" dx="1.1561" dy="2.69" layer="1"/>
+<smd name="2" x="2.4296" y="0" dx="1.1561" dy="2.69" layer="1"/>
+<text x="0" y="2.294" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.294" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD3715X135" urn="urn:adsk.eagle:footprint:9427064/1">
+<description>SOD, 3.70 mm span, 2.70 X 1.55 X 1.35 mm body
+&lt;p&gt;SOD package with 3.70 mm span with body size 2.70 X 1.55 X 1.35 mm&lt;/p&gt;</description>
+<wire x1="1.425" y1="0.85" x2="-2.5991" y2="0.85" width="0.12" layer="21"/>
+<wire x1="-2.5991" y1="0.85" x2="-2.5991" y2="-0.85" width="0.12" layer="21"/>
+<wire x1="-2.5991" y1="-0.85" x2="1.425" y2="-0.85" width="0.12" layer="21"/>
+<wire x1="1.425" y1="-0.85" x2="-1.425" y2="-0.85" width="0.12" layer="51"/>
+<wire x1="-1.425" y1="-0.85" x2="-1.425" y2="0.85" width="0.12" layer="51"/>
+<wire x1="-1.425" y1="0.85" x2="1.425" y2="0.85" width="0.12" layer="51"/>
+<wire x1="1.425" y1="0.85" x2="1.425" y2="-0.85" width="0.12" layer="51"/>
+<smd name="1" x="-1.7215" y="0" dx="1.1272" dy="0.7839" layer="1"/>
+<smd name="2" x="1.7215" y="0" dx="1.1272" dy="0.7839" layer="1"/>
+<text x="0" y="1.485" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.485" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD6126X290" urn="urn:adsk.eagle:footprint:9427065/1">
+<description>SOD, 6.10 mm span, 4.33 X 2.60 X 2.90 mm body
+&lt;p&gt;SOD package with 6.10 mm span with body size 4.33 X 2.60 X 2.90 mm&lt;/p&gt;</description>
+<wire x1="2.3" y1="1.475" x2="-3.9179" y2="1.475" width="0.12" layer="21"/>
+<wire x1="-3.9179" y1="1.475" x2="-3.9179" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="-3.9179" y1="-1.475" x2="2.3" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="2.3" y1="-1.475" x2="-2.3" y2="-1.475" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="-1.475" x2="-2.3" y2="1.475" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="1.475" x2="2.3" y2="1.475" width="0.12" layer="51"/>
+<wire x1="2.3" y1="1.475" x2="2.3" y2="-1.475" width="0.12" layer="51"/>
+<smd name="1" x="-2.7048" y="0" dx="1.7981" dy="1.7253" layer="1"/>
+<smd name="2" x="2.7048" y="0" dx="1.7981" dy="1.7253" layer="1"/>
+<text x="0" y="2.11" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.11" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD6126X350" urn="urn:adsk.eagle:footprint:9933385/1">
+<description>SOD, 6.10 mm span, 4.20 X 2.65 X 3.50 mm body
+&lt;p&gt;SOD package with 6.10 mm span with body size 4.20 X 2.65 X 3.50 mm&lt;/p&gt;</description>
+<wire x1="2.225" y1="1.65" x2="-3.9179" y2="1.65" width="0.12" layer="21"/>
+<wire x1="-3.9179" y1="1.65" x2="-3.9179" y2="-1.65" width="0.12" layer="21"/>
+<wire x1="-3.9179" y1="-1.65" x2="2.225" y2="-1.65" width="0.12" layer="21"/>
+<wire x1="2.225" y1="-1.65" x2="-2.225" y2="-1.65" width="0.12" layer="51"/>
+<wire x1="-2.225" y1="-1.65" x2="-2.225" y2="1.65" width="0.12" layer="51"/>
+<wire x1="-2.225" y1="1.65" x2="2.225" y2="1.65" width="0.12" layer="51"/>
+<wire x1="2.225" y1="1.65" x2="2.225" y2="-1.65" width="0.12" layer="51"/>
+<smd name="1" x="-2.7048" y="0" dx="1.7981" dy="1.7689" layer="1"/>
+<smd name="2" x="2.7048" y="0" dx="1.7981" dy="1.7689" layer="1"/>
+<text x="0" y="2.285" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.285" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD6236X265" urn="urn:adsk.eagle:footprint:9427053/1">
+<description>SOD, 6.22 mm span, 4.33 X 3.63 X 2.65 mm body
+&lt;p&gt;SOD package with 6.22 mm span with body size 4.33 X 3.63 X 2.65 mm&lt;/p&gt;</description>
+<wire x1="2.3" y1="1.975" x2="-3.9196" y2="1.975" width="0.12" layer="21"/>
+<wire x1="-3.9196" y1="1.975" x2="-3.9196" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="-3.9196" y1="-1.975" x2="2.3" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="2.3" y1="-1.975" x2="-2.3" y2="-1.975" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="-1.975" x2="-2.3" y2="1.975" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="1.975" x2="2.3" y2="1.975" width="0.12" layer="51"/>
+<wire x1="2.3" y1="1.975" x2="2.3" y2="-1.975" width="0.12" layer="51"/>
+<smd name="1" x="-2.7561" y="0" dx="1.699" dy="2.2839" layer="1"/>
+<smd name="2" x="2.7561" y="0" dx="1.699" dy="2.2839" layer="1"/>
+<text x="0" y="2.61" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.61" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOD9959X265" urn="urn:adsk.eagle:footprint:9427066/1">
+<description>SOD, 9.93 mm span, 6.88 X 5.90 X 2.65 mm body
+&lt;p&gt;SOD package with 9.93 mm span with body size 6.88 X 5.90 X 2.65 mm&lt;/p&gt;</description>
+<wire x1="3.575" y1="3.125" x2="-5.7696" y2="3.125" width="0.12" layer="21"/>
+<wire x1="-5.7696" y1="3.125" x2="-5.7696" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="-5.7696" y1="-3.125" x2="3.575" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="3.575" y1="-3.125" x2="-3.575" y2="-3.125" width="0.12" layer="51"/>
+<wire x1="-3.575" y1="-3.125" x2="-3.575" y2="3.125" width="0.12" layer="51"/>
+<wire x1="-3.575" y1="3.125" x2="3.575" y2="3.125" width="0.12" layer="51"/>
+<wire x1="3.575" y1="3.125" x2="3.575" y2="-3.125" width="0.12" layer="51"/>
+<smd name="1" x="-4.5203" y="0" dx="1.8706" dy="3.2802" layer="1"/>
+<smd name="2" x="4.5203" y="0" dx="1.8706" dy="3.2802" layer="1"/>
+<text x="0" y="3.76" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-3.76" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL2513X70" urn="urn:adsk.eagle:footprint:9427167/1">
+<description>SODFL, 2.50 mm span, 1.90 X 1.30 X 0.70 mm body
+&lt;p&gt;SODFL package with 2.50 mm span with body size 1.90 X 1.30 X 0.70 mm&lt;/p&gt;</description>
+<wire x1="1" y1="0.7009" x2="-1.8717" y2="0.7009" width="0.12" layer="21"/>
+<wire x1="-1.8717" y1="0.7009" x2="-1.8717" y2="-0.7009" width="0.12" layer="21"/>
+<wire x1="-1.8717" y1="-0.7009" x2="1" y2="-0.7009" width="0.12" layer="21"/>
+<wire x1="1" y1="-0.7" x2="-1" y2="-0.7" width="0.12" layer="51"/>
+<wire x1="-1" y1="-0.7" x2="-1" y2="0.7" width="0.12" layer="51"/>
+<wire x1="-1" y1="0.7" x2="1" y2="0.7" width="0.12" layer="51"/>
+<wire x1="1" y1="0.7" x2="1" y2="-0.7" width="0.12" layer="51"/>
+<smd name="1" x="-1.065" y="0" dx="0.9854" dy="0.7739" layer="1"/>
+<smd name="2" x="1.065" y="0" dx="0.9854" dy="0.7739" layer="1"/>
+<text x="0" y="1.3359" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.3359" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL2513X75" urn="urn:adsk.eagle:footprint:9427168/1">
+<description>SODFL, 2.50 mm span, 2.20 X 1.30 X 0.75 mm body
+&lt;p&gt;SODFL package with 2.50 mm span with body size 2.20 X 1.30 X 0.75 mm&lt;/p&gt;</description>
+<wire x1="1.15" y1="0.7009" x2="-1.8717" y2="0.7009" width="0.12" layer="21"/>
+<wire x1="-1.8717" y1="0.7009" x2="-1.8717" y2="-0.7009" width="0.12" layer="21"/>
+<wire x1="-1.8717" y1="-0.7009" x2="1.15" y2="-0.7009" width="0.12" layer="21"/>
+<wire x1="1.15" y1="-0.7" x2="-1.15" y2="-0.7" width="0.12" layer="51"/>
+<wire x1="-1.15" y1="-0.7" x2="-1.15" y2="0.7" width="0.12" layer="51"/>
+<wire x1="-1.15" y1="0.7" x2="1.15" y2="0.7" width="0.12" layer="51"/>
+<wire x1="1.15" y1="0.7" x2="1.15" y2="-0.7" width="0.12" layer="51"/>
+<smd name="1" x="-0.7394" y="0" dx="1.6364" dy="1.003" layer="1"/>
+<smd name="2" x="0.7394" y="0" dx="1.0027" dy="0.7739" layer="1"/>
+<text x="0" y="1.3359" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.3359" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL3718X115" urn="urn:adsk.eagle:footprint:9427170/1">
+<description>SODFL, 3.70 mm span, 2.80 X 1.80 X 1.15 mm body
+&lt;p&gt;SODFL package with 3.70 mm span with body size 2.80 X 1.80 X 1.15 mm&lt;/p&gt;</description>
+<wire x1="1.45" y1="0.9946" x2="-2.4717" y2="0.9946" width="0.12" layer="21"/>
+<wire x1="-2.4717" y1="0.9946" x2="-2.4717" y2="-0.9946" width="0.12" layer="21"/>
+<wire x1="-2.4717" y1="-0.9946" x2="1.45" y2="-0.9946" width="0.12" layer="21"/>
+<wire x1="1.45" y1="-0.95" x2="-1.45" y2="-0.95" width="0.12" layer="51"/>
+<wire x1="-1.45" y1="-0.95" x2="-1.45" y2="0.95" width="0.12" layer="51"/>
+<wire x1="-1.45" y1="0.95" x2="1.45" y2="0.95" width="0.12" layer="51"/>
+<wire x1="1.45" y1="0.95" x2="1.45" y2="-0.95" width="0.12" layer="51"/>
+<smd name="1" x="-1.6004" y="0" dx="1.1146" dy="1.3612" layer="1"/>
+<smd name="2" x="1.6004" y="0" dx="1.1146" dy="1.3612" layer="1"/>
+<text x="0" y="1.6296" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.6296" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL3718X140" urn="urn:adsk.eagle:footprint:9427171/1">
+<description>SODFL, 3.70 mm span, 2.80 X 1.80 X 1.40 mm body
+&lt;p&gt;SODFL package with 3.70 mm span with body size 2.80 X 1.80 X 1.40 mm&lt;/p&gt;</description>
+<wire x1="1.45" y1="0.9946" x2="-2.4717" y2="0.9946" width="0.12" layer="21"/>
+<wire x1="-2.4717" y1="0.9946" x2="-2.4717" y2="-0.9946" width="0.12" layer="21"/>
+<wire x1="-2.4717" y1="-0.9946" x2="1.45" y2="-0.9946" width="0.12" layer="21"/>
+<wire x1="1.45" y1="-0.95" x2="-1.45" y2="-0.95" width="0.12" layer="51"/>
+<wire x1="-1.45" y1="-0.95" x2="-1.45" y2="0.95" width="0.12" layer="51"/>
+<wire x1="-1.45" y1="0.95" x2="1.45" y2="0.95" width="0.12" layer="51"/>
+<wire x1="1.45" y1="0.95" x2="1.45" y2="-0.95" width="0.12" layer="51"/>
+<smd name="1" x="-1.5233" y="0" dx="1.2688" dy="1.3612" layer="1"/>
+<smd name="2" x="1.5233" y="0" dx="1.2688" dy="1.3612" layer="1"/>
+<text x="0" y="1.6296" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.6296" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL5336X110" urn="urn:adsk.eagle:footprint:9427173/1">
+<description>SODFL, 5.35 mm span, 4.33 X 3.63 X 1.10 mm body
+&lt;p&gt;SODFL package with 5.35 mm span with body size 4.33 X 3.63 X 1.10 mm&lt;/p&gt;</description>
+<wire x1="2.3" y1="1.975" x2="-3.3202" y2="1.975" width="0.12" layer="21"/>
+<wire x1="-3.3202" y1="1.975" x2="-3.3202" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="-3.3202" y1="-1.975" x2="2.3" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="2.3" y1="-1.975" x2="-2.3" y2="-1.975" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="-1.975" x2="-2.3" y2="1.975" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="1.975" x2="2.3" y2="1.975" width="0.12" layer="51"/>
+<wire x1="2.3" y1="1.975" x2="2.3" y2="-1.975" width="0.12" layer="51"/>
+<smd name="1" x="-2.1302" y="0" dx="1.752" dy="2.2239" layer="1"/>
+<smd name="2" x="2.1302" y="0" dx="1.752" dy="2.2239" layer="1"/>
+<text x="0" y="2.61" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.61" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL7959X110" urn="urn:adsk.eagle:footprint:9427174/1">
+<description>SODFL, 7.95 mm span, 6.88 X 5.90 X 1.10 mm body
+&lt;p&gt;SODFL package with 7.95 mm span with body size 6.88 X 5.90 X 1.10 mm&lt;/p&gt;</description>
+<wire x1="3.575" y1="3.125" x2="-4.5967" y2="3.125" width="0.12" layer="21"/>
+<wire x1="-4.5967" y1="3.125" x2="-4.5967" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="-4.5967" y1="-3.125" x2="3.575" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="3.575" y1="-3.125" x2="-3.575" y2="-3.125" width="0.12" layer="51"/>
+<wire x1="-3.575" y1="-3.125" x2="-3.575" y2="3.125" width="0.12" layer="51"/>
+<wire x1="-3.575" y1="3.125" x2="3.575" y2="3.125" width="0.12" layer="51"/>
+<wire x1="3.575" y1="3.125" x2="3.575" y2="-3.125" width="0.12" layer="51"/>
+<smd name="1" x="-3.4233" y="0" dx="1.7188" dy="3.2202" layer="1"/>
+<smd name="2" x="3.4233" y="0" dx="1.7188" dy="3.2202" layer="1"/>
+<text x="0" y="3.76" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-3.76" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL5226X110" urn="urn:adsk.eagle:footprint:9427175/1">
+<description>SODFL, 5.20 mm span, 4.28 X 2.60 X 1.10 mm body
+&lt;p&gt;SODFL package with 5.20 mm span with body size 4.28 X 2.60 X 1.10 mm&lt;/p&gt;</description>
+<wire x1="2.3" y1="1.475" x2="-3.3179" y2="1.475" width="0.12" layer="21"/>
+<wire x1="-3.3179" y1="1.475" x2="-3.3179" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="-3.3179" y1="-1.475" x2="2.3" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="2.3" y1="-1.475" x2="-2.3" y2="-1.475" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="-1.475" x2="-2.3" y2="1.475" width="0.12" layer="51"/>
+<wire x1="-2.3" y1="1.475" x2="2.3" y2="1.475" width="0.12" layer="51"/>
+<wire x1="2.3" y1="1.475" x2="2.3" y2="-1.475" width="0.12" layer="51"/>
+<smd name="1" x="-2.0722" y="0" dx="1.8634" dy="1.6653" layer="1"/>
+<smd name="2" x="2.0722" y="0" dx="1.8634" dy="1.6653" layer="1"/>
+<text x="0" y="2.11" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.11" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL4725X110" urn="urn:adsk.eagle:footprint:9427177/1">
+<description>SODFL, 4.70 mm span, 3.80 X 2.50 X 1.10 mm body
+&lt;p&gt;SODFL package with 4.70 mm span with body size 3.80 X 2.50 X 1.10 mm&lt;/p&gt;</description>
+<wire x1="2" y1="1.35" x2="-3.0192" y2="1.35" width="0.12" layer="21"/>
+<wire x1="-3.0192" y1="1.35" x2="-3.0192" y2="-1.35" width="0.12" layer="21"/>
+<wire x1="-3.0192" y1="-1.35" x2="2" y2="-1.35" width="0.12" layer="21"/>
+<wire x1="2" y1="-1.35" x2="-2" y2="-1.35" width="0.12" layer="51"/>
+<wire x1="-2" y1="-1.35" x2="-2" y2="1.35" width="0.12" layer="51"/>
+<wire x1="-2" y1="1.35" x2="2" y2="1.35" width="0.12" layer="51"/>
+<wire x1="2" y1="1.35" x2="2" y2="-1.35" width="0.12" layer="51"/>
+<smd name="1" x="-2.11" y="0" dx="1.1904" dy="2.0153" layer="1"/>
+<smd name="2" x="2.11" y="0" dx="1.1904" dy="2.0153" layer="1"/>
+<text x="0" y="1.985" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.985" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SODFL1608X70" urn="urn:adsk.eagle:footprint:16378177/1">
+<description>SODFL, 1.60 mm span, 1.20 X 0.80 X 0.70 mm body
+&lt;p&gt;SODFL package with 1.60 mm span with body size 1.20 X 0.80 X 0.70 mm&lt;/p&gt;</description>
+<wire x1="0.65" y1="0.514" x2="-1.3786" y2="0.514" width="0.12" layer="21"/>
+<wire x1="-1.3786" y1="0.514" x2="-1.3786" y2="-0.514" width="0.12" layer="21"/>
+<wire x1="-1.3786" y1="-0.514" x2="0.65" y2="-0.514" width="0.12" layer="21"/>
+<wire x1="0.65" y1="-0.45" x2="-0.65" y2="-0.45" width="0.12" layer="51"/>
+<wire x1="-0.65" y1="-0.45" x2="-0.65" y2="0.45" width="0.12" layer="51"/>
+<wire x1="-0.65" y1="0.45" x2="0.65" y2="0.45" width="0.12" layer="51"/>
+<wire x1="0.65" y1="0.45" x2="0.65" y2="-0.45" width="0.12" layer="51"/>
+<smd name="1" x="-0.7956" y="0" dx="0.538" dy="0.4" layer="1"/>
+<smd name="2" x="0.7956" y="0" dx="0.538" dy="0.4" layer="1"/>
+<text x="0" y="1.149" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.149" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="DIOM5226X290N" urn="urn:adsk.eagle:footprint:16378179/1">
+<description>Molded Body, 5.20 X 2.60 X 2.90 mm body
+&lt;p&gt;Molded Body package with body size 5.20 X 2.60 X 2.90 mm&lt;/p&gt;</description>
+<wire x1="2.8" y1="1.475" x2="-3.6179" y2="1.475" width="0.12" layer="21"/>
+<wire x1="-3.6179" y1="1.475" x2="-3.6179" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="-3.6179" y1="-1.475" x2="2.8" y2="-1.475" width="0.12" layer="21"/>
+<wire x1="2.8" y1="-1.475" x2="-2.8" y2="-1.475" width="0.12" layer="51"/>
+<wire x1="-2.8" y1="-1.475" x2="-2.8" y2="1.475" width="0.12" layer="51"/>
+<wire x1="-2.8" y1="1.475" x2="2.8" y2="1.475" width="0.12" layer="51"/>
+<wire x1="2.8" y1="1.475" x2="2.8" y2="-1.475" width="0.12" layer="51"/>
+<smd name="1" x="-2.1079" y="0" dx="2.392" dy="1.5653" layer="1"/>
+<smd name="2" x="2.1079" y="0" dx="2.392" dy="1.5653" layer="1"/>
+<text x="0" y="2.11" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.11" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="DIOM5336X265N" urn="urn:adsk.eagle:footprint:16378175/1">
+<description>Molded Body, 5.35 X 3.63 X 2.65 mm body
+&lt;p&gt;Molded Body package with body size 5.35 X 3.63 X 2.65 mm&lt;/p&gt;</description>
+<wire x1="2.8" y1="1.975" x2="-3.6202" y2="1.975" width="0.12" layer="21"/>
+<wire x1="-3.6202" y1="1.975" x2="-3.6202" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="-3.6202" y1="-1.975" x2="2.8" y2="-1.975" width="0.12" layer="21"/>
+<wire x1="2.8" y1="-1.975" x2="-2.8" y2="-1.975" width="0.12" layer="51"/>
+<wire x1="-2.8" y1="-1.975" x2="-2.8" y2="1.975" width="0.12" layer="51"/>
+<wire x1="-2.8" y1="1.975" x2="2.8" y2="1.975" width="0.12" layer="51"/>
+<wire x1="2.8" y1="1.975" x2="2.8" y2="-1.975" width="0.12" layer="51"/>
+<smd name="1" x="-2.1641" y="0" dx="2.2841" dy="2.1239" layer="1"/>
+<smd name="2" x="2.1641" y="0" dx="2.2841" dy="2.1239" layer="1"/>
+<text x="0" y="2.61" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.61" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="DIOM7959X625N" urn="urn:adsk.eagle:footprint:16378174/1">
+<description>Molded Body, 7.95 X 5.90 X 6.25 mm body
+&lt;p&gt;Molded Body package with body size 7.95 X 5.90 X 6.25 mm&lt;/p&gt;</description>
+<wire x1="4.075" y1="3.125" x2="-4.8967" y2="3.125" width="0.12" layer="21"/>
+<wire x1="-4.8967" y1="3.125" x2="-4.8967" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="-4.8967" y1="-3.125" x2="4.075" y2="-3.125" width="0.12" layer="21"/>
+<wire x1="4.075" y1="-3.125" x2="-4.075" y2="-3.125" width="0.12" layer="51"/>
+<wire x1="-4.075" y1="-3.125" x2="-4.075" y2="3.125" width="0.12" layer="51"/>
+<wire x1="-4.075" y1="3.125" x2="4.075" y2="3.125" width="0.12" layer="51"/>
+<wire x1="4.075" y1="3.125" x2="4.075" y2="-3.125" width="0.12" layer="51"/>
+<smd name="1" x="-3.4567" y="0" dx="2.2518" dy="3.1202" layer="1"/>
+<smd name="2" x="3.4567" y="0" dx="2.2518" dy="3.1202" layer="1"/>
+<text x="0" y="3.76" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-3.76" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
+<package name="SOT23">
+<description>&lt;b&gt;SOT-23&lt;/b&gt;</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+<package name="SOT23-BEC" urn="urn:adsk.eagle:footprint:28685/1" library_version="6">
+<description>TO-236 ITT Intermetall</description>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.127" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.127" layer="51"/>
+<smd name="C" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="E" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="B" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
 </packages>
 <packages3d>
-<package3d name="0402" urn="urn:adsk.eagle:package:15132/1" type="box">
-<description>EMIFIL (R) Chip Ferrite Bead for GHz Noise
-Source: http://www.murata.com/ Ferrite Bead BLM15H.pdf</description>
+<package3d name="TSSOP8" urn="urn:adsk.eagle:package:7566867/2" type="model">
+<description>&lt;b&gt;Plastic Small Outline&lt;/b&gt;</description>
 <packageinstances>
-<packageinstance name="0402"/>
+<packageinstance name="TSSOP8"/>
+</packageinstances>
+</package3d>
+<package3d name="DIOMELF3516L" urn="urn:adsk.eagle:package:16378190/2" type="model">
+<description>MELF, 3.50 mm length, 1.65 mm diameter
+&lt;p&gt;MELF Diode package with 3.50 mm length and 1.65 mm diameter&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="DIOMELF3516"/>
+</packageinstances>
+</package3d>
+<package3d name="DIOMELF5024" urn="urn:adsk.eagle:package:16378191/1" type="model">
+<description>MELF, 5.00 mm length, 2.49 mm diameter
+&lt;p&gt;MELF Diode package with 5.00 mm length and 2.49 mm diameter&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="DIOMELF5024"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD3715X135" urn="urn:adsk.eagle:package:9427058/2" type="model">
+<description>SOD, 3.70 mm span, 2.70 X 1.55 X 1.35 mm body
+&lt;p&gt;SOD package with 3.70 mm span with body size 2.70 X 1.55 X 1.35 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD3715X135"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD6126X290" urn="urn:adsk.eagle:package:9427057/2" type="model">
+<description>SOD, 6.10 mm span, 4.33 X 2.60 X 2.90 mm body
+&lt;p&gt;SOD package with 6.10 mm span with body size 4.33 X 2.60 X 2.90 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD6126X290"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD6126X350" urn="urn:adsk.eagle:package:9932483/2" type="model">
+<description>SOD, 6.10 mm span, 4.20 X 2.65 X 3.50 mm body
+&lt;p&gt;SOD package with 6.10 mm span with body size 4.20 X 2.65 X 3.50 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD6126X350"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD6236X265" urn="urn:adsk.eagle:package:9427046/2" type="model">
+<description>SOD, 6.22 mm span, 4.33 X 3.63 X 2.65 mm body
+&lt;p&gt;SOD package with 6.22 mm span with body size 4.33 X 3.63 X 2.65 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD6236X265"/>
+</packageinstances>
+</package3d>
+<package3d name="SOD9959X265" urn="urn:adsk.eagle:package:9427056/2" type="model">
+<description>SOD, 9.93 mm span, 6.88 X 5.90 X 2.65 mm body
+&lt;p&gt;SOD package with 9.93 mm span with body size 6.88 X 5.90 X 2.65 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SOD9959X265"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL2513X70" urn="urn:adsk.eagle:package:9427155/2" type="model">
+<description>SODFL, 2.50 mm span, 1.90 X 1.30 X 0.70 mm body
+&lt;p&gt;SODFL package with 2.50 mm span with body size 1.90 X 1.30 X 0.70 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL2513X70"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL2513X75" urn="urn:adsk.eagle:package:9427154/2" type="model">
+<description>SODFL, 2.50 mm span, 2.20 X 1.30 X 0.75 mm body
+&lt;p&gt;SODFL package with 2.50 mm span with body size 2.20 X 1.30 X 0.75 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL2513X75"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL3718X115" urn="urn:adsk.eagle:package:9427153/2" type="model">
+<description>SODFL, 3.70 mm span, 2.80 X 1.80 X 1.15 mm body
+&lt;p&gt;SODFL package with 3.70 mm span with body size 2.80 X 1.80 X 1.15 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL3718X115"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL3718X140" urn="urn:adsk.eagle:package:9427152/2" type="model">
+<description>SODFL, 3.70 mm span, 2.80 X 1.80 X 1.40 mm body
+&lt;p&gt;SODFL package with 3.70 mm span with body size 2.80 X 1.80 X 1.40 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL3718X140"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL5336X110" urn="urn:adsk.eagle:package:9427151/2" type="model">
+<description>SODFL, 5.35 mm span, 4.33 X 3.63 X 1.10 mm body
+&lt;p&gt;SODFL package with 5.35 mm span with body size 4.33 X 3.63 X 1.10 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL5336X110"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL7959X110" urn="urn:adsk.eagle:package:9427150/2" type="model">
+<description>SODFL, 7.95 mm span, 6.88 X 5.90 X 1.10 mm body
+&lt;p&gt;SODFL package with 7.95 mm span with body size 6.88 X 5.90 X 1.10 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL7959X110"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL5226X110" urn="urn:adsk.eagle:package:9427148/2" type="model">
+<description>SODFL, 5.20 mm span, 4.28 X 2.60 X 1.10 mm body
+&lt;p&gt;SODFL package with 5.20 mm span with body size 4.28 X 2.60 X 1.10 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL5226X110"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL4725X110" urn="urn:adsk.eagle:package:9427149/2" type="model">
+<description>SODFL, 4.70 mm span, 3.80 X 2.50 X 1.10 mm body
+&lt;p&gt;SODFL package with 4.70 mm span with body size 3.80 X 2.50 X 1.10 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL4725X110"/>
+</packageinstances>
+</package3d>
+<package3d name="SODFL1608X70" urn="urn:adsk.eagle:package:16378187/1" type="model">
+<description>SODFL, 1.60 mm span, 1.20 X 0.80 X 0.70 mm body
+&lt;p&gt;SODFL package with 1.60 mm span with body size 1.20 X 0.80 X 0.70 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SODFL1608X70"/>
+</packageinstances>
+</package3d>
+<package3d name="DIOM5226X290N" urn="urn:adsk.eagle:package:16378188/1" type="model">
+<description>Molded Body, 5.20 X 2.60 X 2.90 mm body
+&lt;p&gt;Molded Body package with body size 5.20 X 2.60 X 2.90 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="DIOM5226X290N"/>
+</packageinstances>
+</package3d>
+<package3d name="DIOM5336X265N" urn="urn:adsk.eagle:package:16378189/1" type="model">
+<description>Molded Body, 5.35 X 3.63 X 2.65 mm body
+&lt;p&gt;Molded Body package with body size 5.35 X 3.63 X 2.65 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="DIOM5336X265N"/>
+</packageinstances>
+</package3d>
+<package3d name="DIOM7959X625N" urn="urn:adsk.eagle:package:16378186/1" type="model">
+<description>Molded Body, 7.95 X 5.90 X 6.25 mm body
+&lt;p&gt;Molded Body package with body size 7.95 X 5.90 X 6.25 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="DIOM7959X625N"/>
+</packageinstances>
+</package3d>
+<package3d name="SOT23-BEC" urn="urn:adsk.eagle:package:28748/2" type="model" library_version="6">
+<description>TO-236 ITT Intermetall</description>
+<packageinstances>
+<packageinstance name="SOT23-BEC"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -1770,6 +2232,7 @@ Source: http://www.murata.com/ Ferrite Bead BLM15H.pdf</description>
 <text x="-25.4" y="-46.99" size="1.9304" layer="96" ratio="5">&gt;VALUE</text>
 </symbol>
 <symbol name="SI8621BC-B-IS">
+<description>General Purpose Digital Isolator</description>
 <wire x1="-15.24" y1="10.16" x2="-2.54" y2="10.16" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="10.16" x2="2.54" y2="10.16" width="0.254" layer="94"/>
 <wire x1="2.54" y1="10.16" x2="15.24" y2="10.16" width="0.254" layer="94"/>
@@ -1882,9 +2345,107 @@ Switch</text>
 <text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="+3V3" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="TPS2114">
+<description>TPS2114
+AUTOSWITCHING POWER MULTIPLEXER
+Wide Operating Voltage Range: 2.8 V to 5.5 V
+Adjustable Current Limit</description>
+<pin name="STAT" x="12.7" y="0" length="short" rot="R180"/>
+<pin name="D0" x="-12.7" y="-2.54" length="short"/>
+<pin name="D1" x="-12.7" y="-7.62" length="short"/>
+<pin name="ILIM" x="12.7" y="-7.62" length="short" rot="R180"/>
+<pin name="GND" x="0" y="-12.7" visible="pin" length="short" rot="R90"/>
+<pin name="IN2" x="-12.7" y="5.08" length="short"/>
+<pin name="IN1" x="-12.7" y="10.16" length="short"/>
+<pin name="OUT" x="12.7" y="10.16" length="short" rot="R180"/>
+<wire x1="-10.16" y1="12.7" x2="-10.16" y2="-10.16" width="0.1524" layer="94"/>
+<wire x1="-10.16" y1="-10.16" x2="10.16" y2="-10.16" width="0.1524" layer="94"/>
+<wire x1="10.16" y1="-10.16" x2="10.16" y2="12.7" width="0.1524" layer="94"/>
+<wire x1="10.16" y1="12.7" x2="-10.16" y2="12.7" width="0.1524" layer="94"/>
+<text x="-10.16" y="15.24" size="1.778" layer="95">&gt;NAME</text>
+<text x="-12.7" y="-12.7" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="DIODE">
+<description>Diode</description>
+<pin name="A" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="C" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<text x="0" y="5.08" size="1.778" layer="95" align="center">&gt;NAME</text>
+<text x="0" y="-5.08" size="1.778" layer="96" align="center">&gt;VALUE</text>
+<text x="0" y="-7.62" size="1.778" layer="95" align="center">&gt;SPICEMODEL</text>
+<text x="0" y="-10.16" size="1.778" layer="95" align="center">&gt;SPICEEXTRA</text>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
+</symbol>
+<symbol name="SCHOTTKY">
+<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.905" y1="1.27" x2="1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.905" y1="1.27" x2="1.905" y2="1.016" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="-1.016" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
+<text x="0" y="3.175" size="1.778" layer="95" align="center">&gt;NAME</text>
+<text x="0" y="-3.429" size="1.778" layer="96" align="center">&gt;VALUE</text>
+<pin name="A" x="-2.54" y="0" visible="off" length="point" direction="pas"/>
+<pin name="C" x="2.54" y="0" visible="off" length="point" direction="pas" rot="R180"/>
+</symbol>
+<symbol name="R-EU">
+<wire x1="-2.54" y1="-0.889" x2="2.54" y2="-0.889" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0.889" x2="-2.54" y2="0.889" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-0.889" x2="2.54" y2="0.889" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-0.889" x2="-2.54" y2="0.889" width="0.254" layer="94"/>
+<text x="-3.81" y="1.4986" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+</symbol>
+<symbol name="NPN">
+<wire x1="2.54" y1="2.54" x2="0.508" y2="1.524" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="-1.524" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="1.27" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.778" y2="-1.524" width="0.1524" layer="94"/>
+<wire x1="1.54" y1="-2.04" x2="0.308" y2="-1.424" width="0.1524" layer="94"/>
+<wire x1="1.524" y1="-2.413" x2="2.286" y2="-2.413" width="0.254" layer="94"/>
+<wire x1="2.286" y1="-2.413" x2="1.778" y2="-1.778" width="0.254" layer="94"/>
+<wire x1="1.778" y1="-1.778" x2="1.524" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.524" y1="-2.286" x2="1.905" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-2.286" x2="1.778" y2="-2.032" width="0.254" layer="94"/>
+<text x="-10.16" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+<text x="-10.16" y="5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-0.254" y1="-2.54" x2="0.508" y2="2.54" layer="94"/>
+<pin name="B" x="-2.54" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="E" x="2.54" y="-5.08" visible="off" length="short" direction="pas" swaplevel="3" rot="R90"/>
+<pin name="C" x="2.54" y="5.08" visible="off" length="short" direction="pas" swaplevel="2" rot="R270"/>
+</symbol>
+<symbol name="NPN-1">
+<wire x1="2.54" y1="2.54" x2="0.508" y2="1.524" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="-1.524" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="1.27" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.778" y2="-1.524" width="0.1524" layer="94"/>
+<wire x1="1.54" y1="-2.04" x2="0.308" y2="-1.424" width="0.1524" layer="94"/>
+<wire x1="1.524" y1="-2.413" x2="2.286" y2="-2.413" width="0.254" layer="94"/>
+<wire x1="2.286" y1="-2.413" x2="1.778" y2="-1.778" width="0.254" layer="94"/>
+<wire x1="1.778" y1="-1.778" x2="1.524" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.524" y1="-2.286" x2="1.905" y2="-2.286" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-2.286" x2="1.778" y2="-2.032" width="0.254" layer="94"/>
+<text x="-10.16" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+<text x="-10.16" y="5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="-0.254" y1="-2.54" x2="0.508" y2="2.54" layer="94"/>
+<pin name="B" x="-2.54" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+<pin name="E" x="2.54" y="-5.08" visible="off" length="short" direction="pas" swaplevel="3" rot="R90"/>
+<pin name="C" x="2.54" y="5.08" visible="off" length="short" direction="pas" swaplevel="2" rot="R270"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="TLV700XX" prefix="IC">
+<description>IC REG LINEAR 3.3V 200MA SOT23-5</description>
 <gates>
 <gate name="G$1" symbol="LDO-5PIN" x="0" y="0"/>
 </gates>
@@ -1904,6 +2465,7 @@ Switch</text>
 </devices>
 </deviceset>
 <deviceset name="USBLC6-2" prefix="IC">
+<description>TVS DIODE 5.25VWM 17VC SOT23-6</description>
 <gates>
 <gate name="G$1" symbol="USBLC6-2" x="2.54" y="0"/>
 </gates>
@@ -1924,6 +2486,7 @@ Switch</text>
 </devices>
 </deviceset>
 <deviceset name="STEREO_JACK" prefix="CLCKOUT">
+<description>CONN JACK STEREO 3.5MM SMD R/A</description>
 <gates>
 <gate name="G$1" symbol="STEREO_JACK" x="0" y="0"/>
 </gates>
@@ -1941,6 +2504,7 @@ Switch</text>
 </devices>
 </deviceset>
 <deviceset name="USB_MINI_B" prefix="USB">
+<description>USB - mini B USB 2.0 Receptacle Connector</description>
 <gates>
 <gate name="G$1" symbol="MINI_USB_B" x="-2.54" y="-5.08"/>
 </gates>
@@ -1985,7 +2549,8 @@ Switch</text>
 </device>
 </devices>
 </deviceset>
-<deviceset name="OSCILLATOR" prefix="OSC">
+<deviceset name="OSCILLATOR" prefix="OSC" uservalue="yes">
+<description>XTAL OSC TCXO 32.0000MHZ</description>
 <gates>
 <gate name="G$1" symbol="OSCILLATOR" x="0" y="0"/>
 </gates>
@@ -2047,7 +2612,7 @@ Number of pins: &lt;b&gt;2&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 </device>
 </devices>
 </deviceset>
-<deviceset name="FT232R" prefix="IC">
+<deviceset name="FT232R" prefix="IC" uservalue="yes">
 <description>UART/FIFO IC</description>
 <gates>
 <gate name="1" symbol="FT232R" x="0" y="0"/>
@@ -2114,6 +2679,7 @@ Number of pins: &lt;b&gt;2&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 </devices>
 </deviceset>
 <deviceset name="LED_2X" prefix="LED" uservalue="yes">
+<description>LED 2HI 3MM NARROW RED PC MNT</description>
 <gates>
 <gate name="1" symbol="LED" x="-10.16" y="-2.54"/>
 <gate name="2" symbol="LED" x="2.54" y="-2.54"/>
@@ -2191,7 +2757,8 @@ Number of pins: &lt;b&gt;2&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 </device>
 </devices>
 </deviceset>
-<deviceset name="SI8621BC-B-IS" prefix="IC">
+<deviceset name="SI8621BC-B-IS" prefix="IC" uservalue="yes">
+<description>General Purpose Digital Isolator</description>
 <gates>
 <gate name="G$1" symbol="SI8621BC-B-IS" x="0" y="0"/>
 </gates>
@@ -2213,7 +2780,7 @@ Number of pins: &lt;b&gt;2&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 </device>
 </devices>
 </deviceset>
-<deviceset name="MCP73831T-2ATI/OT" prefix="U">
+<deviceset name="MCP73831T-2ATI/OT" prefix="U" uservalue="yes">
 <description>Miniature Single-Cell, Fully Integrated Li-Ion,
 Li-Polymer Charge Management Controllers</description>
 <gates>
@@ -2327,6 +2894,111 @@ Source: http://www.murata.com/ Ferrite Bead BLM15H.pdf</description>
 <technologies>
 <technology name="">
 <attribute name="MPN" value="" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="TPS2114" prefix="IC" uservalue="yes">
+<description>AUTOSWITCHING POWER MULTIPLEXER
+Two-Input, One-Output Power Multiplexer
+Operating Voltage Range: 2.8 V to 5.5 V
+Adjustable Current Limit</description>
+<gates>
+<gate name="G$1" symbol="TPS2114" x="-15.24" y="-2.54"/>
+</gates>
+<devices>
+<device name="" package="TSSOP8">
+<connects>
+<connect gate="G$1" pin="D0" pad="2"/>
+<connect gate="G$1" pin="D1" pad="3"/>
+<connect gate="G$1" pin="GND" pad="5"/>
+<connect gate="G$1" pin="ILIM" pad="4"/>
+<connect gate="G$1" pin="IN1" pad="8"/>
+<connect gate="G$1" pin="IN2" pad="6"/>
+<connect gate="G$1" pin="OUT" pad="7"/>
+<connect gate="G$1" pin="STAT" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:7566867/2"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="MBRM120" prefix="D" uservalue="yes">
+<description>DIODE SCHOTTKY 20V 1A POWERMITE</description>
+<gates>
+<gate name="G$1" symbol="SCHOTTKY" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOD3715X135">
+<connects>
+<connect gate="G$1" pin="A" pad="2"/>
+<connect gate="G$1" pin="C" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:9427058/2"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BC850" prefix="T" uservalue="yes">
+<description>&lt;b&gt;NPN TRANSISTOR&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="NPN" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23">
+<connects>
+<connect gate="G$1" pin="B" pad="1"/>
+<connect gate="G$1" pin="C" pad="3"/>
+<connect gate="G$1" pin="E" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BC817*" prefix="Q" uservalue="yes">
+<description>&lt;b&gt;NPN Transistor&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="NPN-1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="SMD" package="SOT23-BEC">
+<connects>
+<connect gate="G$1" pin="B" pad="B"/>
+<connect gate="G$1" pin="C" pad="C"/>
+<connect gate="G$1" pin="E" pad="E"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:28748/2"/>
+</package3dinstances>
+<technologies>
+<technology name="-16">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-16LT1">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-25">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-25LT1">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-40">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
+<technology name="-40LT1">
+<attribute name="POPULARITY" value="10" constant="no"/>
 </technology>
 </technologies>
 </device>
