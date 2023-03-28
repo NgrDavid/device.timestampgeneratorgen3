@@ -1,0 +1,51 @@
+%YAML 1.1
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
+device: TimestampGeneratorGen3
+whoAmI: 1158
+firmwareVersion: "1.0"
+hardwareTargets: "1.2"
+registers:
+  Config:
+    address: 32
+    type: U8
+    access: Write
+    description: Specifies the device configuration
+  DevicesConnected:
+    address: 33
+    type: U8
+    access: Event
+    description: Reads whether the port has a device connected to (bitmask)
+  RepeaterStatus:
+    address: 34
+    type: U8
+    access: Write
+    description: Check whether device is a repeater or spreading internal timestamp
+  BatteryRate:
+    address: 35
+    type: U8
+    access: Write
+    description: Configure how often the battery calue is sent to computer
+  Battery:
+    address: 36
+    type: Float
+    access: Event
+    description: Reads the current battery charge
+  BatteryThresholdLow:
+    address: 37
+    type: Float
+    access: Write
+    description: Specifies the low threshold from where the battery should start to be charged
+  BatteryThresholdHigh:
+    address: 38
+    type: Float
+    access: Write
+    description: Specifies the high threshold from where the battery stops being charged
+  BatteryCalibration0:
+    address: 39
+    type: U16
+    access: Write
+  BatteryCalibration1:
+    address: 40
+    type: U16
+    access: Write
