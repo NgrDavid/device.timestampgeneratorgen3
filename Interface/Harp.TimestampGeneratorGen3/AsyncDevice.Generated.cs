@@ -51,7 +51,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<byte> ReadConfigAsync()
+        public async Task<ConfigurationFlags> ReadConfigAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(Config.Address));
             return Config.GetPayload(reply);
@@ -64,7 +64,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<byte>> ReadTimestampedConfigAsync()
+        public async Task<Timestamped<ConfigurationFlags>> ReadTimestampedConfigAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(Config.Address));
             return Config.GetTimestampedPayload(reply);
@@ -75,7 +75,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteConfigAsync(byte value)
+        public async Task WriteConfigAsync(ConfigurationFlags value)
         {
             var request = Config.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -114,7 +114,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<byte> ReadRepeaterStatusAsync()
+        public async Task<RepeaterFlags> ReadRepeaterStatusAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(RepeaterStatus.Address));
             return RepeaterStatus.GetPayload(reply);
@@ -127,7 +127,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<byte>> ReadTimestampedRepeaterStatusAsync()
+        public async Task<Timestamped<RepeaterFlags>> ReadTimestampedRepeaterStatusAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(RepeaterStatus.Address));
             return RepeaterStatus.GetTimestampedPayload(reply);
@@ -138,7 +138,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteRepeaterStatusAsync(byte value)
+        public async Task WriteRepeaterStatusAsync(RepeaterFlags value)
         {
             var request = RepeaterStatus.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -151,7 +151,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<byte> ReadBatteryRateAsync()
+        public async Task<BatteryRateConfiguration> ReadBatteryRateAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(BatteryRate.Address));
             return BatteryRate.GetPayload(reply);
@@ -164,7 +164,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<byte>> ReadTimestampedBatteryRateAsync()
+        public async Task<Timestamped<BatteryRateConfiguration>> ReadTimestampedBatteryRateAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(BatteryRate.Address));
             return BatteryRate.GetTimestampedPayload(reply);
@@ -175,7 +175,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteBatteryRateAsync(byte value)
+        public async Task WriteBatteryRateAsync(BatteryRateConfiguration value)
         {
             var request = BatteryRate.FromPayload(MessageType.Write, value);
             await CommandAsync(request);

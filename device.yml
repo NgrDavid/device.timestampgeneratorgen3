@@ -10,6 +10,7 @@ registers:
     address: 32
     type: U8
     access: Write
+    maskType: ConfigurationFlags
     description: Specifies the device configuration
   DevicesConnected:
     address: 33
@@ -20,11 +21,13 @@ registers:
     address: 34
     type: U8
     access: Write
+    maskType: RepeaterFlags
     description: Check whether device is a repeater or spreading internal timestamp
   BatteryRate:
     address: 35
     type: U8
     access: Write
+    maskType: BatteryRateConfiguration
     description: Configure how often the battery calue is sent to computer
   Battery:
     address: 36
@@ -49,3 +52,23 @@ registers:
     address: 40
     type: U16
     access: Write
+bitMasks:
+  ConfigurationFlags:
+    description: Specifies configuration flags for the device.
+    bits:
+      StartBatteryCycle: {0x1, description: Starts battery cycle to extend batteries life.}
+      StartDischarge: {0x2, description: Starts to discharge right away.}
+      StartCharge: {0x4, description: Starts to charge right away.}
+      Stop: {0x8, description: Stop any control of the battery and resume normal function.}
+  RepeaterFlags:
+    description: Specifies whether the device is a clock repeater.
+    bits:
+      Repeater: {0x1, description: The device is a repeater.}
+groupMasks:
+  BatteryRateConfiguration:
+    description: Specifies the rate at which the battery charge is sent.
+    values:
+      EveryMinute: {0, description: The charge is sent every minute.}
+      Every10Seconds: {1, description: The charge is sent every 10 seconds.}
+      EverySecond: {2, description: The charge is sent every second.}
+      Never: {3, description: The battery charge is not sent.}

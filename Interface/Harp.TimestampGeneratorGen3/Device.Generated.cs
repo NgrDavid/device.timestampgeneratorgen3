@@ -216,9 +216,9 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static byte GetPayload(HarpMessage message)
+        public static ConfigurationFlags GetPayload(HarpMessage message)
         {
-            return message.GetPayloadByte();
+            return (ConfigurationFlags)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -226,9 +226,10 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<ConfigurationFlags> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadByte();
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((ConfigurationFlags)payload.Value, payload.Seconds);
         }
 
         /// <summary>
@@ -240,9 +241,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="Config"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, byte value)
+        public static HarpMessage FromPayload(MessageType messageType, ConfigurationFlags value)
         {
-            return HarpMessage.FromByte(Address, messageType, value);
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
@@ -256,9 +257,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="Config"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, ConfigurationFlags value)
         {
-            return HarpMessage.FromByte(Address, timestamp, messageType, value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
     }
 
@@ -280,7 +281,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetPayload(HarpMessage message)
+        public static Timestamped<ConfigurationFlags> GetPayload(HarpMessage message)
         {
             return Config.GetTimestampedPayload(message);
         }
@@ -408,9 +409,9 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static byte GetPayload(HarpMessage message)
+        public static RepeaterFlags GetPayload(HarpMessage message)
         {
-            return message.GetPayloadByte();
+            return (RepeaterFlags)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -418,9 +419,10 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<RepeaterFlags> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadByte();
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((RepeaterFlags)payload.Value, payload.Seconds);
         }
 
         /// <summary>
@@ -432,9 +434,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="RepeaterStatus"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, byte value)
+        public static HarpMessage FromPayload(MessageType messageType, RepeaterFlags value)
         {
-            return HarpMessage.FromByte(Address, messageType, value);
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
@@ -448,9 +450,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="RepeaterStatus"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, RepeaterFlags value)
         {
-            return HarpMessage.FromByte(Address, timestamp, messageType, value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
     }
 
@@ -472,7 +474,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetPayload(HarpMessage message)
+        public static Timestamped<RepeaterFlags> GetPayload(HarpMessage message)
         {
             return RepeaterStatus.GetTimestampedPayload(message);
         }
@@ -504,9 +506,9 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static byte GetPayload(HarpMessage message)
+        public static BatteryRateConfiguration GetPayload(HarpMessage message)
         {
-            return message.GetPayloadByte();
+            return (BatteryRateConfiguration)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -514,9 +516,10 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<BatteryRateConfiguration> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadByte();
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((BatteryRateConfiguration)payload.Value, payload.Seconds);
         }
 
         /// <summary>
@@ -528,9 +531,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="BatteryRate"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, byte value)
+        public static HarpMessage FromPayload(MessageType messageType, BatteryRateConfiguration value)
         {
-            return HarpMessage.FromByte(Address, messageType, value);
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
@@ -544,9 +547,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="BatteryRate"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, BatteryRateConfiguration value)
         {
-            return HarpMessage.FromByte(Address, timestamp, messageType, value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
     }
 
@@ -568,7 +571,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetPayload(HarpMessage message)
+        public static Timestamped<BatteryRateConfiguration> GetPayload(HarpMessage message)
         {
             return BatteryRate.GetTimestampedPayload(message);
         }
@@ -1103,7 +1106,7 @@ namespace Harp.TimestampGeneratorGen3
         /// Gets or sets the value that specifies the device configuration.
         /// </summary>
         [Description("The value that specifies the device configuration.")]
-        public byte Value { get; set; }
+        public ConfigurationFlags Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -1199,7 +1202,7 @@ namespace Harp.TimestampGeneratorGen3
         /// Gets or sets the value that check whether device is a repeater or spreading internal timestamp.
         /// </summary>
         [Description("The value that check whether device is a repeater or spreading internal timestamp.")]
-        public byte Value { get; set; }
+        public RepeaterFlags Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -1247,7 +1250,7 @@ namespace Harp.TimestampGeneratorGen3
         /// Gets or sets the value that configure how often the battery calue is sent to computer.
         /// </summary>
         [Description("The value that configure how often the battery calue is sent to computer.")]
-        public byte Value { get; set; }
+        public BatteryRateConfiguration Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -1520,5 +1523,70 @@ namespace Harp.TimestampGeneratorGen3
         {
             return source.Select(_ => BatteryCalibration1.FromPayload(MessageType, Value));
         }
+    }
+
+    /// <summary>
+    /// Specifies configuration flags for the device.
+    /// </summary>
+    [Flags]
+    public enum ConfigurationFlags : byte
+    {
+        /// <summary>
+        /// Starts battery cycle to extend batteries life.
+        /// </summary>
+        StartBatteryCycle = 0x1,
+
+        /// <summary>
+        /// Starts to discharge right away.
+        /// </summary>
+        StartDischarge = 0x2,
+
+        /// <summary>
+        /// Starts to charge right away.
+        /// </summary>
+        StartCharge = 0x4,
+
+        /// <summary>
+        /// Stop any control of the battery and resume normal function.
+        /// </summary>
+        Stop = 0x8
+    }
+
+    /// <summary>
+    /// Specifies whether the device is a clock repeater.
+    /// </summary>
+    [Flags]
+    public enum RepeaterFlags : byte
+    {
+        /// <summary>
+        /// The device is a repeater.
+        /// </summary>
+        Repeater = 0x1
+    }
+
+    /// <summary>
+    /// Specifies the rate at which the battery charge is sent.
+    /// </summary>
+    public enum BatteryRateConfiguration : byte
+    {
+        /// <summary>
+        /// The charge is sent every minute.
+        /// </summary>
+        EveryMinute = 0,
+
+        /// <summary>
+        /// The charge is sent every 10 seconds.
+        /// </summary>
+        Every10Seconds = 1,
+
+        /// <summary>
+        /// The charge is sent every second.
+        /// </summary>
+        EverySecond = 2,
+
+        /// <summary>
+        /// The battery charge is not sent.
+        /// </summary>
+        Never = 3
     }
 }
