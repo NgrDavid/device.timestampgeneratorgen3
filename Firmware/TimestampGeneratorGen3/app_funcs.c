@@ -41,8 +41,7 @@ uint8_t battery_cycle_state = 0;
 
 void app_read_REG_CONFIG(void)
 {
-	app_regs.REG_CONFIG &= ~(B_START_CHARGE | B_START_DISCHARGE | B_START_BATTERY_CYCLE);
-	app_regs.REG_CONFIG |= battery_mode;
+	app_regs.REG_CONFIG = battery_mode;
 }
 
 bool app_write_REG_CONFIG(void *a)
@@ -60,7 +59,13 @@ bool app_write_REG_CONFIG(void *a)
 	if (reg & B_START_DISCHARGE) {battery_mode = B_START_DISCHARGE;}
 	if (reg & B_START_CHARGE) { battery_mode = B_START_CHARGE; }
 		
-	if (reg & B_STOPS_ANY) { battery_mode = 0; }
+	if (reg & B_STOPS_ANY)
+	{
+		clr_EN_CHARGE;
+		clr_EN_DISCHARGE;
+		
+		battery_mode = 0;
+	}
 
 	app_regs.REG_CONFIG = reg;
 	return true;
