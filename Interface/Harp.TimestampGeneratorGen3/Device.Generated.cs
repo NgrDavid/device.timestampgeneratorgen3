@@ -93,12 +93,12 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(BatteryCalibration0))]
     [XmlInclude(typeof(BatteryCalibration1))]
     [Description("Filters register-specific messages reported by the TimestampGeneratorGen3 device.")]
-    public class FilterMessage : FilterMessageBuilder, INamedElement
+    public class FilterRegister : FilterRegisterBuilder, INamedElement
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FilterMessage"/> class.
+        /// Initializes a new instance of the <see cref="FilterRegister"/> class.
         /// </summary>
-        public FilterMessage()
+        public FilterRegister()
         {
             Register = new Config();
         }
@@ -1079,6 +1079,15 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(CreateBatteryThresholdHighPayload))]
     [XmlInclude(typeof(CreateBatteryCalibration0Payload))]
     [XmlInclude(typeof(CreateBatteryCalibration1Payload))]
+    [XmlInclude(typeof(CreateTimestampedConfigPayload))]
+    [XmlInclude(typeof(CreateTimestampedDevicesConnectedPayload))]
+    [XmlInclude(typeof(CreateTimestampedRepeaterStatusPayload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryRatePayload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryPayload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryThresholdLowPayload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryThresholdHighPayload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryCalibration0Payload))]
+    [XmlInclude(typeof(CreateTimestampedBatteryCalibration1Payload))]
     [Description("Creates standard message payloads for the TimestampGeneratorGen3 device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -1094,434 +1103,488 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a message payload
     /// that specifies the device configuration.
     /// </summary>
     [DisplayName("ConfigPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that specifies the device configuration.")]
-    public partial class CreateConfigPayload : HarpCombinator
+    [Description("Creates a message payload that specifies the device configuration.")]
+    public partial class CreateConfigPayload
     {
         /// <summary>
         /// Gets or sets the value that specifies the device configuration.
         /// </summary>
         [Description("The value that specifies the device configuration.")]
-        public ConfigurationFlags Value { get; set; }
+        public ConfigurationFlags Config { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that specifies the device configuration.
+        /// Creates a message payload for the Config register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ConfigurationFlags GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return Config;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that specifies the device configuration.
+        /// Creates a message that specifies the device configuration.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the Config register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => Config.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.Config.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that specifies the device configuration.
+    /// </summary>
+    [DisplayName("TimestampedConfigPayload")]
+    [Description("Creates a timestamped message payload that specifies the device configuration.")]
+    public partial class CreateTimestampedConfigPayload : CreateConfigPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that specifies the device configuration.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the Config register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.Config.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that reads whether the port has a device connected to (bitmask).
     /// </summary>
     [DisplayName("DevicesConnectedPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that reads whether the port has a device connected to (bitmask).")]
-    public partial class CreateDevicesConnectedPayload : HarpCombinator
+    [Description("Creates a message payload that reads whether the port has a device connected to (bitmask).")]
+    public partial class CreateDevicesConnectedPayload
     {
         /// <summary>
         /// Gets or sets the value that reads whether the port has a device connected to (bitmask).
         /// </summary>
         [Description("The value that reads whether the port has a device connected to (bitmask).")]
-        public byte Value { get; set; }
+        public byte DevicesConnected { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that reads whether the port has a device connected to (bitmask).
+        /// Creates a message payload for the DevicesConnected register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public byte GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DevicesConnected;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that reads whether the port has a device connected to (bitmask).
+        /// Creates a message that reads whether the port has a device connected to (bitmask).
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DevicesConnected register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DevicesConnected.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.DevicesConnected.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that reads whether the port has a device connected to (bitmask).
+    /// </summary>
+    [DisplayName("TimestampedDevicesConnectedPayload")]
+    [Description("Creates a timestamped message payload that reads whether the port has a device connected to (bitmask).")]
+    public partial class CreateTimestampedDevicesConnectedPayload : CreateDevicesConnectedPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that reads whether the port has a device connected to (bitmask).
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DevicesConnected register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.DevicesConnected.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that check whether device is a repeater or spreading internal timestamp.
     /// </summary>
     [DisplayName("RepeaterStatusPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that check whether device is a repeater or spreading internal timestamp.")]
-    public partial class CreateRepeaterStatusPayload : HarpCombinator
+    [Description("Creates a message payload that check whether device is a repeater or spreading internal timestamp.")]
+    public partial class CreateRepeaterStatusPayload
     {
         /// <summary>
         /// Gets or sets the value that check whether device is a repeater or spreading internal timestamp.
         /// </summary>
         [Description("The value that check whether device is a repeater or spreading internal timestamp.")]
-        public RepeaterFlags Value { get; set; }
+        public RepeaterFlags RepeaterStatus { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that check whether device is a repeater or spreading internal timestamp.
+        /// Creates a message payload for the RepeaterStatus register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public RepeaterFlags GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return RepeaterStatus;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that check whether device is a repeater or spreading internal timestamp.
+        /// Creates a message that check whether device is a repeater or spreading internal timestamp.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the RepeaterStatus register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => RepeaterStatus.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.RepeaterStatus.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that check whether device is a repeater or spreading internal timestamp.
+    /// </summary>
+    [DisplayName("TimestampedRepeaterStatusPayload")]
+    [Description("Creates a timestamped message payload that check whether device is a repeater or spreading internal timestamp.")]
+    public partial class CreateTimestampedRepeaterStatusPayload : CreateRepeaterStatusPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that check whether device is a repeater or spreading internal timestamp.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the RepeaterStatus register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.RepeaterStatus.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that configure how often the battery calue is sent to computer.
     /// </summary>
     [DisplayName("BatteryRatePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that configure how often the battery calue is sent to computer.")]
-    public partial class CreateBatteryRatePayload : HarpCombinator
+    [Description("Creates a message payload that configure how often the battery calue is sent to computer.")]
+    public partial class CreateBatteryRatePayload
     {
         /// <summary>
         /// Gets or sets the value that configure how often the battery calue is sent to computer.
         /// </summary>
         [Description("The value that configure how often the battery calue is sent to computer.")]
-        public BatteryRateConfiguration Value { get; set; }
+        public BatteryRateConfiguration BatteryRate { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that configure how often the battery calue is sent to computer.
+        /// Creates a message payload for the BatteryRate register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public BatteryRateConfiguration GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return BatteryRate;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that configure how often the battery calue is sent to computer.
+        /// Creates a message that configure how often the battery calue is sent to computer.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the BatteryRate register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => BatteryRate.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.BatteryRate.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that configure how often the battery calue is sent to computer.
+    /// </summary>
+    [DisplayName("TimestampedBatteryRatePayload")]
+    [Description("Creates a timestamped message payload that configure how often the battery calue is sent to computer.")]
+    public partial class CreateTimestampedBatteryRatePayload : CreateBatteryRatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that configure how often the battery calue is sent to computer.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the BatteryRate register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.BatteryRate.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that reads the current battery charge.
     /// </summary>
     [DisplayName("BatteryPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that reads the current battery charge.")]
-    public partial class CreateBatteryPayload : HarpCombinator
+    [Description("Creates a message payload that reads the current battery charge.")]
+    public partial class CreateBatteryPayload
     {
         /// <summary>
         /// Gets or sets the value that reads the current battery charge.
         /// </summary>
         [Description("The value that reads the current battery charge.")]
-        public float Value { get; set; }
+        public float Battery { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that reads the current battery charge.
+        /// Creates a message payload for the Battery register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public float GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return Battery;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that reads the current battery charge.
+        /// Creates a message that reads the current battery charge.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the Battery register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => Battery.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.Battery.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that reads the current battery charge.
+    /// </summary>
+    [DisplayName("TimestampedBatteryPayload")]
+    [Description("Creates a timestamped message payload that reads the current battery charge.")]
+    public partial class CreateTimestampedBatteryPayload : CreateBatteryPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that reads the current battery charge.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the Battery register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.Battery.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that specifies the low threshold from where the battery should start to be charged.
     /// </summary>
     [DisplayName("BatteryThresholdLowPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that specifies the low threshold from where the battery should start to be charged.")]
-    public partial class CreateBatteryThresholdLowPayload : HarpCombinator
+    [Description("Creates a message payload that specifies the low threshold from where the battery should start to be charged.")]
+    public partial class CreateBatteryThresholdLowPayload
     {
         /// <summary>
         /// Gets or sets the value that specifies the low threshold from where the battery should start to be charged.
         /// </summary>
         [Description("The value that specifies the low threshold from where the battery should start to be charged.")]
-        public float Value { get; set; }
+        public float BatteryThresholdLow { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that specifies the low threshold from where the battery should start to be charged.
+        /// Creates a message payload for the BatteryThresholdLow register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public float GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return BatteryThresholdLow;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that specifies the low threshold from where the battery should start to be charged.
+        /// Creates a message that specifies the low threshold from where the battery should start to be charged.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the BatteryThresholdLow register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => BatteryThresholdLow.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.BatteryThresholdLow.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that specifies the low threshold from where the battery should start to be charged.
+    /// </summary>
+    [DisplayName("TimestampedBatteryThresholdLowPayload")]
+    [Description("Creates a timestamped message payload that specifies the low threshold from where the battery should start to be charged.")]
+    public partial class CreateTimestampedBatteryThresholdLowPayload : CreateBatteryThresholdLowPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that specifies the low threshold from where the battery should start to be charged.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the BatteryThresholdLow register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.BatteryThresholdLow.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that specifies the high threshold from where the battery stops being charged.
     /// </summary>
     [DisplayName("BatteryThresholdHighPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that specifies the high threshold from where the battery stops being charged.")]
-    public partial class CreateBatteryThresholdHighPayload : HarpCombinator
+    [Description("Creates a message payload that specifies the high threshold from where the battery stops being charged.")]
+    public partial class CreateBatteryThresholdHighPayload
     {
         /// <summary>
         /// Gets or sets the value that specifies the high threshold from where the battery stops being charged.
         /// </summary>
         [Description("The value that specifies the high threshold from where the battery stops being charged.")]
-        public float Value { get; set; }
+        public float BatteryThresholdHigh { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that specifies the high threshold from where the battery stops being charged.
+        /// Creates a message payload for the BatteryThresholdHigh register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public float GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return BatteryThresholdHigh;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that specifies the high threshold from where the battery stops being charged.
+        /// Creates a message that specifies the high threshold from where the battery stops being charged.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the BatteryThresholdHigh register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => BatteryThresholdHigh.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.BatteryThresholdHigh.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that specifies the high threshold from where the battery stops being charged.
+    /// </summary>
+    [DisplayName("TimestampedBatteryThresholdHighPayload")]
+    [Description("Creates a timestamped message payload that specifies the high threshold from where the battery stops being charged.")]
+    public partial class CreateTimestampedBatteryThresholdHighPayload : CreateBatteryThresholdHighPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that specifies the high threshold from where the battery stops being charged.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the BatteryThresholdHigh register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.BatteryThresholdHigh.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// for register BatteryCalibration0.
     /// </summary>
     [DisplayName("BatteryCalibration0Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads for register BatteryCalibration0.")]
-    public partial class CreateBatteryCalibration0Payload : HarpCombinator
+    [Description("Creates a message payload for register BatteryCalibration0.")]
+    public partial class CreateBatteryCalibration0Payload
     {
         /// <summary>
         /// Gets or sets the value for register BatteryCalibration0.
         /// </summary>
         [Description("The value for register BatteryCalibration0.")]
-        public ushort Value { get; set; }
+        public ushort BatteryCalibration0 { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// for register BatteryCalibration0.
+        /// Creates a message payload for the BatteryCalibration0 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return BatteryCalibration0;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// for register BatteryCalibration0.
+        /// Creates a message for register BatteryCalibration0.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the BatteryCalibration0 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => BatteryCalibration0.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.BatteryCalibration0.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// for register BatteryCalibration0.
+    /// </summary>
+    [DisplayName("TimestampedBatteryCalibration0Payload")]
+    [Description("Creates a timestamped message payload for register BatteryCalibration0.")]
+    public partial class CreateTimestampedBatteryCalibration0Payload : CreateBatteryCalibration0Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message for register BatteryCalibration0.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the BatteryCalibration0 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.BatteryCalibration0.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// for register BatteryCalibration1.
     /// </summary>
     [DisplayName("BatteryCalibration1Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads for register BatteryCalibration1.")]
-    public partial class CreateBatteryCalibration1Payload : HarpCombinator
+    [Description("Creates a message payload for register BatteryCalibration1.")]
+    public partial class CreateBatteryCalibration1Payload
     {
         /// <summary>
         /// Gets or sets the value for register BatteryCalibration1.
         /// </summary>
         [Description("The value for register BatteryCalibration1.")]
-        public ushort Value { get; set; }
+        public ushort BatteryCalibration1 { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// for register BatteryCalibration1.
+        /// Creates a message payload for the BatteryCalibration1 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return BatteryCalibration1;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// for register BatteryCalibration1.
+        /// Creates a message for register BatteryCalibration1.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the BatteryCalibration1 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => BatteryCalibration1.FromPayload(MessageType, Value));
+            return Harp.TimestampGeneratorGen3.BatteryCalibration1.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// for register BatteryCalibration1.
+    /// </summary>
+    [DisplayName("TimestampedBatteryCalibration1Payload")]
+    [Description("Creates a timestamped message payload for register BatteryCalibration1.")]
+    public partial class CreateTimestampedBatteryCalibration1Payload : CreateBatteryCalibration1Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message for register BatteryCalibration1.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the BatteryCalibration1 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.BatteryCalibration1.FromPayload(timestamp, messageType, GetPayload());
         }
     }
 
@@ -1531,6 +1594,11 @@ namespace Harp.TimestampGeneratorGen3
     [Flags]
     public enum ConfigurationFlags : byte
     {
+        /// <summary>
+        /// Specifies that no flags are defined.
+        /// </summary>
+        None = 0x0,
+
         /// <summary>
         /// Starts battery cycle to extend batteries life.
         /// </summary>
@@ -1558,6 +1626,11 @@ namespace Harp.TimestampGeneratorGen3
     [Flags]
     public enum RepeaterFlags : byte
     {
+        /// <summary>
+        /// Specifies that no flags are defined.
+        /// </summary>
+        None = 0x0,
+
         /// <summary>
         /// The device is a repeater.
         /// </summary>
