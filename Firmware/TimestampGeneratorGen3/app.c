@@ -44,7 +44,8 @@ void hwbp_app_initialize(void)
         APP_REGS_ADD_MAX - APP_REGS_ADD_MIN + 1,
         default_device_name,
 		true,	// The device is able to repeat the harp timestamp clock
-		true	// The device is able to generate the harp timestamp clock
+		true,	// The device is able to generate the harp timestamp clock
+		3		// Default timestamp offset
     );
 } 
 

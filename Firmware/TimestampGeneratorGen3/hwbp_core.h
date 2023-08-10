@@ -68,11 +68,6 @@ bool hwbp_read_common_reg(uint8_t add, uint8_t type);
 // Write to an common register.
 bool hwbp_write_common_reg(uint8_t add, uint8_t type, uint8_t * content, uint16_t n_elements);
 
-/************************************************************************/
-/* Register OPERATION_CTRL                                              */
-/************************************************************************/
-// Write to common register OPERATION_CTRL.
-bool hwbp_write_common_reg_OPERATION_CTRL(void *a);
 
 /************************************************************************/
 /* Register RESET_APP                                                   */
@@ -82,6 +77,7 @@ bool hwbp_write_common_reg_RESET_APP(void *a);
 
 // Used to save all registers to non-volatile memory
 bool core_save_all_registers_to_eeprom(void);
+
 
 /************************************************************************/
 /* Register CONFIG                                                      */
@@ -130,7 +126,8 @@ void core_func_start_core (
     const uint8_t num_of_app_registers,
     const uint8_t *device_name,
 	const bool	device_is_able_to_repeat_clock,
-	const bool	device_is_able_to_generate_clock
+	const bool	device_is_able_to_generate_clock,
+	const uint8_t default_timestamp_offset
 	);
 
 // Call this function in case of error
