@@ -2,11 +2,24 @@
 
 This device generates programable timestamps to up to 6 harp devices.
 
-Includes an internal battery to increase reliability for long term experiments.
+![HarpTimestampGeneratorGen3](./Assets/pcb.jpg)
 
-![DeviceFront](Assets/device.jpg)
+### Key Features ###
 
-# Licensing
+* TBA
 
-The code, designs, documentation, and photos available in this repository is free: you can redistribute it and/or modify it under the terms of the used license.
-Each subdirectory will contain a license or, possibly, a set of licenses if it involves both hardware and software. Check files named LICENSE.
+
+### Connectivity ###
+
+* TBA
+
+
+## Interface ##
+
+
+The interface with the Harp Output Expander can be done through [Bonsai](https://bonsai-rx.org/).
+
+
+## Licensing ##
+
+Each subdirectory will contain a license or, possibly, a set of licenses if it involves both hardware and software.
