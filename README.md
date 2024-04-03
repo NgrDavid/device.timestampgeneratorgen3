@@ -2,7 +2,7 @@
 
 This device generates programable timestamps to up to 6 harp devices.
 
-![HarpTimestampGeneratorGen3](./Assets/pcb.jpg)
+![HarpTimestampGeneratorGen3](./Assets/pcb.png)
 
 ### Key Features ###
 
