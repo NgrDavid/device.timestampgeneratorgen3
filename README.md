@@ -1,4 +1,4 @@
-# Harp Timestamp Generator Gen3
+## Harp Timestamp Generator Gen3
 
 This device generates programable timestamps to up to 6 harp devices.
 
