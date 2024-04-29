@@ -17,7 +17,9 @@ void (*app_func_rd_pointer[])(void) = {
 	&app_read_REG_BATTERY_TH_LOW,
 	&app_read_REG_BATTERY_TH_HIGH,
 	&app_read_REG_BATTERY_CALIBRATION0,
-	&app_read_REG_BATTERY_CALIBRATION1
+	&app_read_REG_BATTERY_CALIBRATION1,
+	&app_read_REG_TIMER,
+	&app_read_REG_TIMER_FREQUENCY
 };
 
 bool (*app_func_wr_pointer[])(void*) = {
@@ -29,7 +31,9 @@ bool (*app_func_wr_pointer[])(void*) = {
 	&app_write_REG_BATTERY_TH_LOW,
 	&app_write_REG_BATTERY_TH_HIGH,
 	&app_write_REG_BATTERY_CALIBRATION0,
-	&app_write_REG_BATTERY_CALIBRATION1
+	&app_write_REG_BATTERY_CALIBRATION1,
+	&app_write_REG_TIMER,
+	&app_write_REG_TIMER_FREQUENCY
 };
 
 
@@ -209,5 +213,34 @@ bool app_write_REG_BATTERY_CALIBRATION1(void *a)
 	uint16_t reg = *((uint16_t*)a);
 
 	app_regs.REG_BATTERY_CALIBRATION1 = reg;
+	return true;
+}
+
+
+/************************************************************************/
+/* ADD_REG_TIMER                                                        */
+/************************************************************************/
+void app_read_REG_TIMER(void) {}
+bool app_write_REG_TIMER(void *a)
+{
+	uint32_t reg = *((uint32_t*)a);
+
+	app_regs.REG_TIMER = reg;
+	return true;
+}
+
+
+/************************************************************************/
+/* ADD_REG_TIMER_FREQUENCY                                              */
+/************************************************************************/
+void app_read_REG_TIMER_FREQUENCY(void) {}
+bool app_write_REG_TIMER_FREQUENCY(void *a)
+{
+	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & (~GM_TIMER_FREQUENCY))
+		return false;
+	
+	app_regs.REG_TIMER_FREQUENCY = reg;
 	return true;
 }
