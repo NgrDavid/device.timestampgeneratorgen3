@@ -56,11 +56,12 @@ registers:
     address: 41
     type: U32
     access: [Write, Event]
-    description: Unitary counter that periodically produces a value at frequency defined by TIMER_FREQUENCY
+    description: Unitary counter that periodically produces a value at frequency defined by register TimerFrequency
   TimerFrequency:
     address: 42
     type: U8
     access: Write
+    maskType: TimerRate
     description: Frequency to produce subsequent values
 bitMasks:
   ConfigurationFlags:
