@@ -101,7 +101,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<byte> ReadDevicesConnectedAsync(CancellationToken cancellationToken = default)
+        public async Task<ConnectedDevices> ReadDevicesConnectedAsync(CancellationToken cancellationToken = default)
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DevicesConnected.Address), cancellationToken);
             return DevicesConnected.GetPayload(reply);
@@ -117,7 +117,7 @@ namespace Harp.TimestampGeneratorGen3
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<byte>> ReadTimestampedDevicesConnectedAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<ConnectedDevices>> ReadTimestampedDevicesConnectedAsync(CancellationToken cancellationToken = default)
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DevicesConnected.Address), cancellationToken);
             return DevicesConnected.GetTimestampedPayload(reply);
@@ -428,6 +428,98 @@ namespace Harp.TimestampGeneratorGen3
         public async Task WriteBatteryCalibration1Async(ushort value, CancellationToken cancellationToken = default)
         {
             var request = BatteryCalibration1.FromPayload(MessageType.Write, value);
+            await CommandAsync(request, cancellationToken);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the contents of the Timer register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the register payload.
+        /// </returns>
+        public async Task<uint> ReadTimerAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(Timer.Address), cancellationToken);
+            return Timer.GetPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the timestamped contents of the Timer register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the timestamped register payload.
+        /// </returns>
+        public async Task<Timestamped<uint>> ReadTimestampedTimerAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(Timer.Address), cancellationToken);
+            return Timer.GetTimestampedPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously writes a value to the Timer register.
+        /// </summary>
+        /// <param name="value">The value to be stored in the register.</param>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>The task object representing the asynchronous write operation.</returns>
+        public async Task WriteTimerAsync(uint value, CancellationToken cancellationToken = default)
+        {
+            var request = Timer.FromPayload(MessageType.Write, value);
+            await CommandAsync(request, cancellationToken);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the contents of the TimerFrequency register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the register payload.
+        /// </returns>
+        public async Task<TimerRate> ReadTimerFrequencyAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadByte(TimerFrequency.Address), cancellationToken);
+            return TimerFrequency.GetPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the timestamped contents of the TimerFrequency register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the timestamped register payload.
+        /// </returns>
+        public async Task<Timestamped<TimerRate>> ReadTimestampedTimerFrequencyAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadByte(TimerFrequency.Address), cancellationToken);
+            return TimerFrequency.GetTimestampedPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously writes a value to the TimerFrequency register.
+        /// </summary>
+        /// <param name="value">The value to be stored in the register.</param>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>The task object representing the asynchronous write operation.</returns>
+        public async Task WriteTimerFrequencyAsync(TimerRate value, CancellationToken cancellationToken = default)
+        {
+            var request = TimerFrequency.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);
         }
     }
