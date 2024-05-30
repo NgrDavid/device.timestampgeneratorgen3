@@ -16,6 +16,7 @@ registers:
     address: 33
     type: U8
     access: Event
+    maskType: ConnectedDevices
     description: Reads whether the port has a device connected to (bitmask)
   RepeaterStatus:
     address: 34
@@ -70,7 +71,16 @@ bitMasks:
       StartBatteryCycle: {0x1, description: Starts battery cycle to extend batteries life.}
       StartDischarge: {0x2, description: Starts to discharge right away.}
       StartCharge: {0x4, description: Starts to charge right away.}
-      Stop: {0x8, description: Stop any control of the battery and resume normal function.}
+      Stop: {0x8, description: Stop any control of the battery and resume normal function.}      
+  ConnectedDevices:
+    description: Specifies if an output port has a device connected.
+    bits:
+      Port0: 0x01
+      Port1: 0x02
+      Port2: 0x04
+      Port3: 0x08
+      Port4: 0x10
+      Port5: 0x20
   RepeaterFlags:
     description: Specifies whether the device is a clock repeater.
     bits:
