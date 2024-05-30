@@ -155,6 +155,8 @@ typedef struct
 	float REG_BATTERY_TH_HIGH;
 	uint16_t REG_BATTERY_CALIBRATION0;
 	uint16_t REG_BATTERY_CALIBRATION1;
+	uint32_t REG_TIMER;
+	uint8_t REG_TIMER_FREQUENCY;
 } AppRegs;
 
 /************************************************************************/
@@ -168,8 +170,10 @@ typedef struct
 #define ADD_REG_BATTERY                     36 // FLOAT  Reads the current battery charge
 #define ADD_REG_BATTERY_TH_LOW              37 // FLOAT  Sets the low threshold from where the battery should start to be charged
 #define ADD_REG_BATTERY_TH_HIGH             38 // FLOAT  Sets the high threshold from where the battery stops to be charged
-#define ADD_REG_BATTERY_CALIBRATION0        39 // U16    
-#define ADD_REG_BATTERY_CALIBRATION1        40 // U16    
+#define ADD_REG_BATTERY_CALIBRATION0        39 // U16    Not used
+#define ADD_REG_BATTERY_CALIBRATION1        40 // U16    Not used
+#define ADD_REG_TIMER                       41 // U32    Unitary counter that periodically produces a value at frequency defined by TIMER_FREQUENCY
+#define ADD_REG_TIMER_FREQUENCY             42 // U8     Frequency to produce subsequent values
 
 /************************************************************************/
 /* PWM Generator registers' memory limits                               */
@@ -179,8 +183,8 @@ typedef struct
 /************************************************************************/
 /* Memory limits */
 #define APP_REGS_ADD_MIN                    0x20
-#define APP_REGS_ADD_MAX                    0x28
-#define APP_NBYTES_OF_REG_BANK              20
+#define APP_REGS_ADD_MAX                    0x2A
+#define APP_NBYTES_OF_REG_BANK              25
 
 /************************************************************************/
 /* Registers' bits                                                      */
@@ -195,5 +199,12 @@ typedef struct
 #define MSK_EACH_10SECONDS                 1            // Sent each 10 second
 #define MSK_EACH_SECOND                    2            // Sent each second
 #define MSK_NEVER                          3            // Not sent
+#define GM_TIMER_FREQUENCY                 7            // Configures the rate at which the counter is sent
+#define MSK_TIMER_OFF                      0            // Timer is off
+#define MSK_TIMER_50HZ                     1            // Counter sent at 50 Hz
+#define MSK_TIMER_100HZ                    2            // Counter sent at 100 Hz
+#define MSK_TIMER_200HZ                    3            // Counter sent at 200 Hz
+#define MSK_TIMER_500HZ                    4            // Counter sent at 500 Hz
+#define MSK_TIMER_1000HZ                   5            // Counter sent at 1000 Hz
 
 #endif /* _APP_REGS_H_ */

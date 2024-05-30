@@ -3,7 +3,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
 device: TimestampGeneratorGen3
 whoAmI: 1158
-firmwareVersion: "1.1"
+firmwareVersion: "1.2"
 hardwareTargets: "1.2"
 registers:
   Config:
@@ -52,6 +52,17 @@ registers:
     address: 40
     type: U16
     access: Write
+  Timer:
+    address: 41
+    type: U32
+    access: [Write, Event]
+    description: Unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+  TimerFrequency:
+    address: 42
+    type: U8
+    access: Write
+    maskType: TimerRate
+    description: Frequency at which the Timer will generate new values.
 bitMasks:
   ConfigurationFlags:
     description: Specifies configuration flags for the device.
@@ -72,3 +83,12 @@ groupMasks:
       Every10Seconds: {1, description: The charge is sent every 10 seconds.}
       EverySecond: {2, description: The charge is sent every second.}
       Never: {3, description: The battery charge is not sent.}
+  TimerRate:
+    description: Specifies the rate at which the timer counter is sent.
+    values:
+      TimerOff: {0, description: Timer is tunerd off.}
+      Timer50Hz: {1, description: Counter sent at 50Hz.}
+      Timer50Hz: {2, description: Counter sent at 10Hz.}
+      Timer50Hz: {3, description: Counter sent at 200Hz.}
+      Timer50Hz: {4, description: Counter sent at 500Hz.}
+      Timer50Hz: {5, description: Counter sent at 1000Hz.}

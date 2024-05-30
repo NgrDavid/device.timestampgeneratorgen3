@@ -29,6 +29,8 @@ void app_read_REG_BATTERY_TH_LOW(void);
 void app_read_REG_BATTERY_TH_HIGH(void);
 void app_read_REG_BATTERY_CALIBRATION0(void);
 void app_read_REG_BATTERY_CALIBRATION1(void);
+void app_read_REG_TIMER(void);
+void app_read_REG_TIMER_FREQUENCY(void);
 
 bool app_write_REG_CONFIG(void *a);
 bool app_write_REG_DEVICES_CONNECTED(void *a);
@@ -39,6 +41,8 @@ bool app_write_REG_BATTERY_TH_LOW(void *a);
 bool app_write_REG_BATTERY_TH_HIGH(void *a);
 bool app_write_REG_BATTERY_CALIBRATION0(void *a);
 bool app_write_REG_BATTERY_CALIBRATION1(void *a);
+bool app_write_REG_TIMER(void *a);
+bool app_write_REG_TIMER_FREQUENCY(void *a);
 
 
 #endif /* _APP_FUNCTIONS_H_ */

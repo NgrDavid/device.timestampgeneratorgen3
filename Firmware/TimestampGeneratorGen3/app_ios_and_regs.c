@@ -70,10 +70,14 @@ uint8_t app_regs_type[] = {
 	TYPE_FLOAT,
 	TYPE_FLOAT,
 	TYPE_U16,
-	TYPE_U16
+	TYPE_U16,
+	TYPE_U32,
+	TYPE_U8
 };
 
 uint16_t app_regs_n_elements[] = {
+	1,
+	1,
 	1,
 	1,
 	1,
@@ -94,5 +98,7 @@ uint8_t *app_regs_pointer[] = {
 	(uint8_t*)(&app_regs.REG_BATTERY_TH_LOW),
 	(uint8_t*)(&app_regs.REG_BATTERY_TH_HIGH),
 	(uint8_t*)(&app_regs.REG_BATTERY_CALIBRATION0),
-	(uint8_t*)(&app_regs.REG_BATTERY_CALIBRATION1)
+	(uint8_t*)(&app_regs.REG_BATTERY_CALIBRATION1),
+	(uint8_t*)(&app_regs.REG_TIMER),
+	(uint8_t*)(&app_regs.REG_TIMER_FREQUENCY)
 };

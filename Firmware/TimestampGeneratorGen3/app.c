@@ -28,9 +28,9 @@ void hwbp_app_initialize(void)
 {
     /* Define versions */
     uint8_t hwH = 1;
-    uint8_t hwL = 2;
+    uint8_t hwL = 0;
     uint8_t fwH = 1;
-    uint8_t fwL = 1;
+    uint8_t fwL = 2;
     uint8_t ass = 0;
     
    	/* Start core */
@@ -179,6 +179,7 @@ bool read_battery = false;
 
 uint16_t counter = 2000;
 uint8_t battery_counter = 0;
+uint16_t timer_counter = 0;
 
 #define BATTERY_BUFFER 16
 #define BATTERY_DIV 4
@@ -216,7 +217,20 @@ extern uint8_t battery_mode;
 extern uint8_t battery_cycle_state;
 void batery_state_machine(void);
 
-void core_callback_t_before_exec(void) {}
+void core_callback_t_before_exec(void)
+{
+	timer_counter++;
+	
+	if ((app_regs.REG_TIMER_FREQUENCY == MSK_TIMER_1000HZ && ((timer_counter & 1) == 0)) ||
+		(app_regs.REG_TIMER_FREQUENCY == MSK_TIMER_500HZ && ((timer_counter & 3) == 0)) ||
+		(app_regs.REG_TIMER_FREQUENCY == MSK_TIMER_200HZ && ((timer_counter % 10) == 0)) ||
+		(app_regs.REG_TIMER_FREQUENCY == MSK_TIMER_100HZ && ((timer_counter % 20) == 0)) ||
+		(app_regs.REG_TIMER_FREQUENCY == MSK_TIMER_50HZ && ((timer_counter % 40) == 0)))
+	{
+		core_func_send_event(ADD_REG_TIMER, true);
+		app_regs.REG_TIMER++;
+	}
+}
 void core_callback_t_after_exec(void) {}
 void core_callback_t_new_second(void)
 {	
@@ -225,6 +239,8 @@ void core_callback_t_new_second(void)
 	
 	set_BAT_READ;
 	read_battery = true;
+	
+	timer_counter = 0;
 }
 void core_callback_t_500us(void) {}
 
