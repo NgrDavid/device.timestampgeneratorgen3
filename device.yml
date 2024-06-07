@@ -75,7 +75,6 @@ bitMasks:
   ConnectedDevices:
     description: Specifies if an output port has a device connected.
     bits:
-      None: 0x00
       Out0: 0x01
       Out1: 0x02
       Out2: 0x04
