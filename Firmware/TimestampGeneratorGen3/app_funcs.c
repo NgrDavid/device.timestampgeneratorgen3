@@ -81,8 +81,14 @@ bool app_write_REG_CONFIG(void *a)
 /************************************************************************/
 void app_read_REG_DEVICES_CONNECTED(void)
 {
-	//app_regs.REG_DEVICES_CONNECTED = 0;
-
+	app_regs.REG_DEVICES_CONNECTED = 0;
+	
+	if (read_DEVICE_AT_0) app_regs.REG_DEVICES_CONNECTED |= B_PORT0;
+	if (read_DEVICE_AT_1) app_regs.REG_DEVICES_CONNECTED |= B_PORT1;
+	if (read_DEVICE_AT_2) app_regs.REG_DEVICES_CONNECTED |= B_PORT2;
+	if (read_DEVICE_AT_3) app_regs.REG_DEVICES_CONNECTED |= B_PORT3;
+	if (read_DEVICE_AT_4) app_regs.REG_DEVICES_CONNECTED |= B_PORT4;
+	if (read_DEVICE_AT_5) app_regs.REG_DEVICES_CONNECTED |= B_PORT5;
 }
 
 bool app_write_REG_DEVICES_CONNECTED(void *a)

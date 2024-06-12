@@ -15,8 +15,9 @@ registers:
   DevicesConnected:
     address: 33
     type: U8
-    access: Event
-    description: Reads whether the port has a device connected to (bitmask)
+    access: Read
+    maskType: ConnectedDevices
+    description: Specifies which CLK_OUT ports have devices connected.
   RepeaterStatus:
     address: 34
     type: U8
@@ -28,7 +29,7 @@ registers:
     type: U8
     access: Write
     maskType: BatteryRateConfiguration
-    description: Configure how often the battery calue is sent to computer
+    description: Configure how often the battery value is sent to computer
   Battery:
     address: 36
     type: Float
@@ -71,24 +72,33 @@ bitMasks:
       StartDischarge: {0x2, description: Starts to discharge right away.}
       StartCharge: {0x4, description: Starts to charge right away.}
       Stop: {0x8, description: Stop any control of the battery and resume normal function.}
+  ConnectedDevices:
+    description: Specifies if an output port has a device connected.
+    bits:
+      Out0: 0x01
+      Out1: 0x02
+      Out2: 0x04
+      Out3: 0x08
+      Out4: 0x10
+      Out5: 0x20
   RepeaterFlags:
     description: Specifies whether the device is a clock repeater.
     bits:
-      Repeater: {0x1, description: The device is a repeater.}
+      Repeater: 0x01
 groupMasks:
   BatteryRateConfiguration:
-    description: Specifies the rate at which the battery charge is sent.
+    description: Specifies the rate at which the battery charge event is sent.
     values:
-      EveryMinute: {0, description: The charge is sent every minute.}
-      Every10Seconds: {1, description: The charge is sent every 10 seconds.}
-      EverySecond: {2, description: The charge is sent every second.}
-      Never: {3, description: The battery charge is not sent.}
+      EveryMinute: 0
+      Every10Seconds: 1
+      EverySecond: 2
+      Never: 3
   TimerRate:
     description: Specifies the rate at which the timer counter is sent.
     values:
-      TimerOff: {0, description: Timer is tunerd off.}
-      Timer50Hz: {1, description: Counter sent at 50Hz.}
-      Timer50Hz: {2, description: Counter sent at 10Hz.}
-      Timer50Hz: {3, description: Counter sent at 200Hz.}
-      Timer50Hz: {4, description: Counter sent at 500Hz.}
-      Timer50Hz: {5, description: Counter sent at 1000Hz.}
+      Disabled: 0
+      Timer50Hz: 1
+      Timer100Hz: 2
+      Timer200Hz: 3
+      Timer500Hz: 4
+      Timer1000Hz: 5

@@ -193,6 +193,12 @@ typedef struct
 #define B_START_DISCHARGE                  (1<<1)       // Starts to discharge right away
 #define B_START_CHARGE                     (1<<2)       // Starts to charge right away
 #define B_STOPS_ANY                        (1<<3)       // Stop any control of the battery and get back to normal function
+#define B_PORT0                            (1<<0)       // 
+#define B_PORT1                            (1<<1)       // 
+#define B_PORT2                            (1<<2)       // 
+#define B_PORT3                            (1<<3)       // 
+#define B_PORT4                            (1<<4)       // 
+#define B_PORT5                            (1<<5)       // 
 #define B_REPEATER                         (1<<0)       // Device is a repeater
 #define GM_BATTERY_RATE                    3            // Configures the rate at which the battery charge is sent
 #define MSK_EACH_60SECONDS                 0            // Sent each minute

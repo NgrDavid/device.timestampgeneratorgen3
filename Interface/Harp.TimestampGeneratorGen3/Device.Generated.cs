@@ -45,7 +45,9 @@ namespace Harp.TimestampGeneratorGen3
             { 37, typeof(BatteryThresholdLow) },
             { 38, typeof(BatteryThresholdHigh) },
             { 39, typeof(BatteryCalibration0) },
-            { 40, typeof(BatteryCalibration1) }
+            { 40, typeof(BatteryCalibration1) },
+            { 41, typeof(Timer) },
+            { 42, typeof(TimerFrequency) }
         };
     }
 
@@ -83,6 +85,8 @@ namespace Harp.TimestampGeneratorGen3
     /// <seealso cref="BatteryThresholdHigh"/>
     /// <seealso cref="BatteryCalibration0"/>
     /// <seealso cref="BatteryCalibration1"/>
+    /// <seealso cref="Timer"/>
+    /// <seealso cref="TimerFrequency"/>
     [XmlInclude(typeof(Config))]
     [XmlInclude(typeof(DevicesConnected))]
     [XmlInclude(typeof(RepeaterStatus))]
@@ -92,6 +96,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(BatteryThresholdHigh))]
     [XmlInclude(typeof(BatteryCalibration0))]
     [XmlInclude(typeof(BatteryCalibration1))]
+    [XmlInclude(typeof(Timer))]
+    [XmlInclude(typeof(TimerFrequency))]
     [Description("Filters register-specific messages reported by the TimestampGeneratorGen3 device.")]
     public class FilterRegister : FilterRegisterBuilder, INamedElement
     {
@@ -122,6 +128,8 @@ namespace Harp.TimestampGeneratorGen3
     /// <seealso cref="BatteryThresholdHigh"/>
     /// <seealso cref="BatteryCalibration0"/>
     /// <seealso cref="BatteryCalibration1"/>
+    /// <seealso cref="Timer"/>
+    /// <seealso cref="TimerFrequency"/>
     [XmlInclude(typeof(Config))]
     [XmlInclude(typeof(DevicesConnected))]
     [XmlInclude(typeof(RepeaterStatus))]
@@ -131,6 +139,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(BatteryThresholdHigh))]
     [XmlInclude(typeof(BatteryCalibration0))]
     [XmlInclude(typeof(BatteryCalibration1))]
+    [XmlInclude(typeof(Timer))]
+    [XmlInclude(typeof(TimerFrequency))]
     [XmlInclude(typeof(TimestampedConfig))]
     [XmlInclude(typeof(TimestampedDevicesConnected))]
     [XmlInclude(typeof(TimestampedRepeaterStatus))]
@@ -140,6 +150,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(TimestampedBatteryThresholdHigh))]
     [XmlInclude(typeof(TimestampedBatteryCalibration0))]
     [XmlInclude(typeof(TimestampedBatteryCalibration1))]
+    [XmlInclude(typeof(TimestampedTimer))]
+    [XmlInclude(typeof(TimestampedTimerFrequency))]
     [Description("Filters and selects specific messages reported by the TimestampGeneratorGen3 device.")]
     public partial class Parse : ParseBuilder, INamedElement
     {
@@ -167,6 +179,8 @@ namespace Harp.TimestampGeneratorGen3
     /// <seealso cref="BatteryThresholdHigh"/>
     /// <seealso cref="BatteryCalibration0"/>
     /// <seealso cref="BatteryCalibration1"/>
+    /// <seealso cref="Timer"/>
+    /// <seealso cref="TimerFrequency"/>
     [XmlInclude(typeof(Config))]
     [XmlInclude(typeof(DevicesConnected))]
     [XmlInclude(typeof(RepeaterStatus))]
@@ -176,6 +190,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(BatteryThresholdHigh))]
     [XmlInclude(typeof(BatteryCalibration0))]
     [XmlInclude(typeof(BatteryCalibration1))]
+    [XmlInclude(typeof(Timer))]
+    [XmlInclude(typeof(TimerFrequency))]
     [Description("Formats a sequence of values as specific TimestampGeneratorGen3 register messages.")]
     public partial class Format : FormatBuilder, INamedElement
     {
@@ -288,9 +304,9 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
-    /// Represents a register that reads whether the port has a device connected to (bitmask).
+    /// Represents a register that specifies which CLK_OUT ports have devices connected.
     /// </summary>
-    [Description("Reads whether the port has a device connected to (bitmask)")]
+    [Description("Specifies which CLK_OUT ports have devices connected.")]
     public partial class DevicesConnected
     {
         /// <summary>
@@ -313,9 +329,9 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static byte GetPayload(HarpMessage message)
+        public static ConnectedDevices GetPayload(HarpMessage message)
         {
-            return message.GetPayloadByte();
+            return (ConnectedDevices)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -323,9 +339,10 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<ConnectedDevices> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadByte();
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((ConnectedDevices)payload.Value, payload.Seconds);
         }
 
         /// <summary>
@@ -337,9 +354,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="DevicesConnected"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, byte value)
+        public static HarpMessage FromPayload(MessageType messageType, ConnectedDevices value)
         {
-            return HarpMessage.FromByte(Address, messageType, value);
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
@@ -353,9 +370,9 @@ namespace Harp.TimestampGeneratorGen3
         /// A <see cref="HarpMessage"/> object for the <see cref="DevicesConnected"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, ConnectedDevices value)
         {
-            return HarpMessage.FromByte(Address, timestamp, messageType, value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
     }
 
@@ -377,7 +394,7 @@ namespace Harp.TimestampGeneratorGen3
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<byte> GetPayload(HarpMessage message)
+        public static Timestamped<ConnectedDevices> GetPayload(HarpMessage message)
         {
             return DevicesConnected.GetTimestampedPayload(message);
         }
@@ -481,9 +498,9 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
-    /// Represents a register that configure how often the battery calue is sent to computer.
+    /// Represents a register that configure how often the battery value is sent to computer.
     /// </summary>
-    [Description("Configure how often the battery calue is sent to computer")]
+    [Description("Configure how often the battery value is sent to computer")]
     public partial class BatteryRate
     {
         /// <summary>
@@ -1058,6 +1075,199 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
+    /// Represents a register that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+    /// </summary>
+    [Description("Unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.")]
+    public partial class Timer
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Timer"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 41;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Timer"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U32;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Timer"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+
+        /// <summary>
+        /// Returns the payload data for <see cref="Timer"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the message payload.</returns>
+        public static uint GetPayload(HarpMessage message)
+        {
+            return message.GetPayloadUInt32();
+        }
+
+        /// <summary>
+        /// Returns the timestamped payload data for <see cref="Timer"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<uint> GetTimestampedPayload(HarpMessage message)
+        {
+            return message.GetTimestampedPayloadUInt32();
+        }
+
+        /// <summary>
+        /// Returns a Harp message for the <see cref="Timer"/> register.
+        /// </summary>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="Timer"/> register
+        /// with the specified message type and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(MessageType messageType, uint value)
+        {
+            return HarpMessage.FromUInt32(Address, messageType, value);
+        }
+
+        /// <summary>
+        /// Returns a timestamped Harp message for the <see cref="Timer"/>
+        /// register.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="Timer"/> register
+        /// with the specified message type, timestamp, and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, uint value)
+        {
+            return HarpMessage.FromUInt32(Address, timestamp, messageType, value);
+        }
+    }
+
+    /// <summary>
+    /// Provides methods for manipulating timestamped messages from the
+    /// Timer register.
+    /// </summary>
+    /// <seealso cref="Timer"/>
+    [Description("Filters and selects timestamped messages from the Timer register.")]
+    public partial class TimestampedTimer
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Timer"/> register. This field is constant.
+        /// </summary>
+        public const int Address = Timer.Address;
+
+        /// <summary>
+        /// Returns timestamped payload data for <see cref="Timer"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<uint> GetPayload(HarpMessage message)
+        {
+            return Timer.GetTimestampedPayload(message);
+        }
+    }
+
+    /// <summary>
+    /// Represents a register that frequency at which the Timer will generate new values.
+    /// </summary>
+    [Description("Frequency at which the Timer will generate new values.")]
+    public partial class TimerFrequency
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="TimerFrequency"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 42;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="TimerFrequency"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="TimerFrequency"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+
+        /// <summary>
+        /// Returns the payload data for <see cref="TimerFrequency"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the message payload.</returns>
+        public static TimerRate GetPayload(HarpMessage message)
+        {
+            return (TimerRate)message.GetPayloadByte();
+        }
+
+        /// <summary>
+        /// Returns the timestamped payload data for <see cref="TimerFrequency"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<TimerRate> GetTimestampedPayload(HarpMessage message)
+        {
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((TimerRate)payload.Value, payload.Seconds);
+        }
+
+        /// <summary>
+        /// Returns a Harp message for the <see cref="TimerFrequency"/> register.
+        /// </summary>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="TimerFrequency"/> register
+        /// with the specified message type and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(MessageType messageType, TimerRate value)
+        {
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
+        }
+
+        /// <summary>
+        /// Returns a timestamped Harp message for the <see cref="TimerFrequency"/>
+        /// register.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="TimerFrequency"/> register
+        /// with the specified message type, timestamp, and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, TimerRate value)
+        {
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
+        }
+    }
+
+    /// <summary>
+    /// Provides methods for manipulating timestamped messages from the
+    /// TimerFrequency register.
+    /// </summary>
+    /// <seealso cref="TimerFrequency"/>
+    [Description("Filters and selects timestamped messages from the TimerFrequency register.")]
+    public partial class TimestampedTimerFrequency
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="TimerFrequency"/> register. This field is constant.
+        /// </summary>
+        public const int Address = TimerFrequency.Address;
+
+        /// <summary>
+        /// Returns timestamped payload data for <see cref="TimerFrequency"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<TimerRate> GetPayload(HarpMessage message)
+        {
+            return TimerFrequency.GetTimestampedPayload(message);
+        }
+    }
+
+    /// <summary>
     /// Represents an operator which creates standard message payloads for the
     /// TimestampGeneratorGen3 device.
     /// </summary>
@@ -1070,6 +1280,8 @@ namespace Harp.TimestampGeneratorGen3
     /// <seealso cref="CreateBatteryThresholdHighPayload"/>
     /// <seealso cref="CreateBatteryCalibration0Payload"/>
     /// <seealso cref="CreateBatteryCalibration1Payload"/>
+    /// <seealso cref="CreateTimerPayload"/>
+    /// <seealso cref="CreateTimerFrequencyPayload"/>
     [XmlInclude(typeof(CreateConfigPayload))]
     [XmlInclude(typeof(CreateDevicesConnectedPayload))]
     [XmlInclude(typeof(CreateRepeaterStatusPayload))]
@@ -1079,6 +1291,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(CreateBatteryThresholdHighPayload))]
     [XmlInclude(typeof(CreateBatteryCalibration0Payload))]
     [XmlInclude(typeof(CreateBatteryCalibration1Payload))]
+    [XmlInclude(typeof(CreateTimerPayload))]
+    [XmlInclude(typeof(CreateTimerFrequencyPayload))]
     [XmlInclude(typeof(CreateTimestampedConfigPayload))]
     [XmlInclude(typeof(CreateTimestampedDevicesConnectedPayload))]
     [XmlInclude(typeof(CreateTimestampedRepeaterStatusPayload))]
@@ -1088,6 +1302,8 @@ namespace Harp.TimestampGeneratorGen3
     [XmlInclude(typeof(CreateTimestampedBatteryThresholdHighPayload))]
     [XmlInclude(typeof(CreateTimestampedBatteryCalibration0Payload))]
     [XmlInclude(typeof(CreateTimestampedBatteryCalibration1Payload))]
+    [XmlInclude(typeof(CreateTimestampedTimerPayload))]
+    [XmlInclude(typeof(CreateTimestampedTimerFrequencyPayload))]
     [Description("Creates standard message payloads for the TimestampGeneratorGen3 device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -1158,29 +1374,29 @@ namespace Harp.TimestampGeneratorGen3
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that reads whether the port has a device connected to (bitmask).
+    /// that specifies which CLK_OUT ports have devices connected.
     /// </summary>
     [DisplayName("DevicesConnectedPayload")]
-    [Description("Creates a message payload that reads whether the port has a device connected to (bitmask).")]
+    [Description("Creates a message payload that specifies which CLK_OUT ports have devices connected.")]
     public partial class CreateDevicesConnectedPayload
     {
         /// <summary>
-        /// Gets or sets the value that reads whether the port has a device connected to (bitmask).
+        /// Gets or sets the value that specifies which CLK_OUT ports have devices connected.
         /// </summary>
-        [Description("The value that reads whether the port has a device connected to (bitmask).")]
-        public byte DevicesConnected { get; set; }
+        [Description("The value that specifies which CLK_OUT ports have devices connected.")]
+        public ConnectedDevices DevicesConnected { get; set; }
 
         /// <summary>
         /// Creates a message payload for the DevicesConnected register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public byte GetPayload()
+        public ConnectedDevices GetPayload()
         {
             return DevicesConnected;
         }
 
         /// <summary>
-        /// Creates a message that reads whether the port has a device connected to (bitmask).
+        /// Creates a message that specifies which CLK_OUT ports have devices connected.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
         /// <returns>A new message for the DevicesConnected register.</returns>
@@ -1192,14 +1408,14 @@ namespace Harp.TimestampGeneratorGen3
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that reads whether the port has a device connected to (bitmask).
+    /// that specifies which CLK_OUT ports have devices connected.
     /// </summary>
     [DisplayName("TimestampedDevicesConnectedPayload")]
-    [Description("Creates a timestamped message payload that reads whether the port has a device connected to (bitmask).")]
+    [Description("Creates a timestamped message payload that specifies which CLK_OUT ports have devices connected.")]
     public partial class CreateTimestampedDevicesConnectedPayload : CreateDevicesConnectedPayload
     {
         /// <summary>
-        /// Creates a timestamped message that reads whether the port has a device connected to (bitmask).
+        /// Creates a timestamped message that specifies which CLK_OUT ports have devices connected.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
@@ -1266,16 +1482,16 @@ namespace Harp.TimestampGeneratorGen3
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that configure how often the battery calue is sent to computer.
+    /// that configure how often the battery value is sent to computer.
     /// </summary>
     [DisplayName("BatteryRatePayload")]
-    [Description("Creates a message payload that configure how often the battery calue is sent to computer.")]
+    [Description("Creates a message payload that configure how often the battery value is sent to computer.")]
     public partial class CreateBatteryRatePayload
     {
         /// <summary>
-        /// Gets or sets the value that configure how often the battery calue is sent to computer.
+        /// Gets or sets the value that configure how often the battery value is sent to computer.
         /// </summary>
-        [Description("The value that configure how often the battery calue is sent to computer.")]
+        [Description("The value that configure how often the battery value is sent to computer.")]
         public BatteryRateConfiguration BatteryRate { get; set; }
 
         /// <summary>
@@ -1288,7 +1504,7 @@ namespace Harp.TimestampGeneratorGen3
         }
 
         /// <summary>
-        /// Creates a message that configure how often the battery calue is sent to computer.
+        /// Creates a message that configure how often the battery value is sent to computer.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
         /// <returns>A new message for the BatteryRate register.</returns>
@@ -1300,14 +1516,14 @@ namespace Harp.TimestampGeneratorGen3
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that configure how often the battery calue is sent to computer.
+    /// that configure how often the battery value is sent to computer.
     /// </summary>
     [DisplayName("TimestampedBatteryRatePayload")]
-    [Description("Creates a timestamped message payload that configure how often the battery calue is sent to computer.")]
+    [Description("Creates a timestamped message payload that configure how often the battery value is sent to computer.")]
     public partial class CreateTimestampedBatteryRatePayload : CreateBatteryRatePayload
     {
         /// <summary>
-        /// Creates a timestamped message that configure how often the battery calue is sent to computer.
+        /// Creates a timestamped message that configure how often the battery value is sent to computer.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
@@ -1589,6 +1805,114 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
+    /// Represents an operator that creates a message payload
+    /// that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+    /// </summary>
+    [DisplayName("TimerPayload")]
+    [Description("Creates a message payload that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.")]
+    public partial class CreateTimerPayload
+    {
+        /// <summary>
+        /// Gets or sets the value that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+        /// </summary>
+        [Description("The value that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.")]
+        public uint Timer { get; set; }
+
+        /// <summary>
+        /// Creates a message payload for the Timer register.
+        /// </summary>
+        /// <returns>The created message payload value.</returns>
+        public uint GetPayload()
+        {
+            return Timer;
+        }
+
+        /// <summary>
+        /// Creates a message that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+        /// </summary>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the Timer register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.Timer.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+    /// </summary>
+    [DisplayName("TimestampedTimerPayload")]
+    [Description("Creates a timestamped message payload that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.")]
+    public partial class CreateTimestampedTimerPayload : CreateTimerPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that unitary counter that periodically produces a value at the frequency defined by register TimerFrequency.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the Timer register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.Timer.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
+    /// that frequency at which the Timer will generate new values.
+    /// </summary>
+    [DisplayName("TimerFrequencyPayload")]
+    [Description("Creates a message payload that frequency at which the Timer will generate new values.")]
+    public partial class CreateTimerFrequencyPayload
+    {
+        /// <summary>
+        /// Gets or sets the value that frequency at which the Timer will generate new values.
+        /// </summary>
+        [Description("The value that frequency at which the Timer will generate new values.")]
+        public TimerRate TimerFrequency { get; set; }
+
+        /// <summary>
+        /// Creates a message payload for the TimerFrequency register.
+        /// </summary>
+        /// <returns>The created message payload value.</returns>
+        public TimerRate GetPayload()
+        {
+            return TimerFrequency;
+        }
+
+        /// <summary>
+        /// Creates a message that frequency at which the Timer will generate new values.
+        /// </summary>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the TimerFrequency register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.TimerFrequency.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that frequency at which the Timer will generate new values.
+    /// </summary>
+    [DisplayName("TimestampedTimerFrequencyPayload")]
+    [Description("Creates a timestamped message payload that frequency at which the Timer will generate new values.")]
+    public partial class CreateTimestampedTimerFrequencyPayload : CreateTimerFrequencyPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that frequency at which the Timer will generate new values.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the TimerFrequency register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.TimestampGeneratorGen3.TimerFrequency.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
     /// Specifies configuration flags for the device.
     /// </summary>
     [Flags]
@@ -1621,45 +1945,51 @@ namespace Harp.TimestampGeneratorGen3
     }
 
     /// <summary>
+    /// Specifies if an output port has a device connected.
+    /// </summary>
+    [Flags]
+    public enum ConnectedDevices : byte
+    {
+        None = 0x0,
+        Out0 = 0x1,
+        Out1 = 0x2,
+        Out2 = 0x4,
+        Out3 = 0x8,
+        Out4 = 0x10,
+        Out5 = 0x20
+    }
+
+    /// <summary>
     /// Specifies whether the device is a clock repeater.
     /// </summary>
     [Flags]
     public enum RepeaterFlags : byte
     {
-        /// <summary>
-        /// Specifies that no flags are defined.
-        /// </summary>
         None = 0x0,
-
-        /// <summary>
-        /// The device is a repeater.
-        /// </summary>
         Repeater = 0x1
     }
 
     /// <summary>
-    /// Specifies the rate at which the battery charge is sent.
+    /// Specifies the rate at which the battery charge event is sent.
     /// </summary>
     public enum BatteryRateConfiguration : byte
     {
-        /// <summary>
-        /// The charge is sent every minute.
-        /// </summary>
         EveryMinute = 0,
-
-        /// <summary>
-        /// The charge is sent every 10 seconds.
-        /// </summary>
         Every10Seconds = 1,
-
-        /// <summary>
-        /// The charge is sent every second.
-        /// </summary>
         EverySecond = 2,
-
-        /// <summary>
-        /// The battery charge is not sent.
-        /// </summary>
         Never = 3
+    }
+
+    /// <summary>
+    /// Specifies the rate at which the timer counter is sent.
+    /// </summary>
+    public enum TimerRate : byte
+    {
+        Disabled = 0,
+        Timer50Hz = 1,
+        Timer100Hz = 2,
+        Timer200Hz = 3,
+        Timer500Hz = 4,
+        Timer1000Hz = 5
     }
 }
