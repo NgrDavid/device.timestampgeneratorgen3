@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
+# yaml-language-server: $schema=https://harp-tech.org/draft-02/schema/device.json
 device: TimestampGeneratorGen3
 whoAmI: 1158
 firmwareVersion: "1.2"
@@ -68,10 +68,10 @@ bitMasks:
   ConfigurationFlags:
     description: Specifies configuration flags for the device.
     bits:
-      StartBatteryCycle: {0x1, description: Starts battery cycle to extend batteries life.}
-      StartDischarge: {0x2, description: Starts to discharge right away.}
-      StartCharge: {0x4, description: Starts to charge right away.}
-      Stop: {0x8, description: Stop any control of the battery and resume normal function.}
+      StartBatteryCycle: {value: 0x1, description: Starts battery cycle to extend batteries life.}
+      StartDischarge: {value: 0x2, description: Starts to discharge right away.}
+      StartCharge: {value: 0x4, description: Starts to charge right away.}
+      Stop: {value: 0x8, description: Stop any control of the battery and resume normal function.}
   ConnectedDevices:
     description: Specifies if an output port has a device connected.
     bits:
